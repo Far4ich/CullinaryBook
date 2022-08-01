@@ -1,0 +1,355 @@
+.body{
+    width: 83.33%;
+    padding: 0 8.33%;
+}
+.body-background{
+    position:absolute;
+    right:0px;
+    top:0px;
+    border-radius: 0px 0px 0px 200px;
+}
+
+.slogan{
+    position:relative;
+    z-index: 1;
+    margin-top: 133px;
+    width: 688px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.slogan-title{
+    width: 688px;
+    height: 176px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 88px;    
+    color: #25292D;
+    
+}
+
+.slogan-description{
+    width: 566.86px;
+    height: 56px;
+    margin-top: 16px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;    
+    color: #4A525A;
+}
+
+.slogan-buttons{
+    display:flex;
+    justify-content: flex-start;
+    margin-top:42px;
+}
+
+.slogan-buttons-add-recipe{
+    width: 278px;
+    height: 60px;
+    background: #FDB100;
+    border-radius: 16px;
+    border: 0px; 
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FFFFFF;
+}
+
+.slogan-buttons-login{
+    box-sizing: border-box;
+    width: 216px;
+    height: 60px;
+    border: 1px solid #FDB100;
+    border-radius: 16px;
+    background-color: #FFFFFF;
+    margin-left: 24px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FDB100;
+}
+
+.tags-preview{
+    height: 459px;
+    margin-top: 352px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.tags-preview-title{
+    width: 811px;
+    height: 62px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 62px;
+    /* identical to box height, or 148% */
+
+    color: #25292D;
+}
+.tags-preview-description{
+    width: 700px;
+    height: 68px;
+    margin-top: 16px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    /* or 178% */
+
+    color: #4A525A;
+}
+.mat-card{
+    padding: 0;
+}
+
+.tags-cards{
+    margin-top: 42px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.tags-card{
+    width: 278px;
+    height: 271px;
+
+    box-shadow: 0px 16px 72px rgba(34, 39, 47, 0.05);
+    border-radius: 24px;
+}
+
+.tags-card-content{
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-card-title{
+    height: 30px;
+    margin-top: 24px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    /* identical to box height, or 125% */
+
+
+    color: #25292D;
+}
+
+.tags-card-description{
+    margin-top: 16px;
+    width: 230px;
+    height: 95px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+/* or 167% */
+
+    color: #4A525A;
+}
+
+.tags-card-img-box{
+    width: 50px;
+    height: 50px;
+
+    background: #FFEFCC;
+    border-radius: 12px;
+}
+.tags-card-img{
+    margin: 13px 14px;
+}
+
+.day-recipe{
+    margin-top: 157px;
+    height: 543px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-recipe-img{
+    width: 543px;
+    height: 543px;
+
+    background: #F0F0F0;
+    border-radius: 72px 0px;
+}
+
+.day-recipe-content{
+    margin-left: 4.31%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.day-recipe-content-like-time{
+    display: flex;
+    justify-content: flex-end;
+}
+.day-recipe-content-like-time-img{
+    width: 24px;
+    height: 24px;
+    margin-left: 27px;
+}
+
+.day-recipe-content-like-time-text{
+    height:28;
+    margin-left: 7px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    /* identical to box height, or 175% */
+
+    color: #25292D;
+}
+
+.day-recipe-content-yummy{
+    margin-top: 23px;
+}
+
+.day-recipe-content-title{
+    height: 120px;
+    width: 513px;
+    margin-top: 32px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 60px;
+    /* or 143% */
+
+    text-transform: capitalize;
+
+    color: #25292D;
+}
+
+.day-recipe-content-description{
+    height: 128px;
+    margin-top: 16px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    /* or 178% */
+
+    font-feature-settings: 'case' on;
+
+    color: #4A525A;
+}
+
+.recipe-search{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.recipe-search-title{
+    height: 51px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 51px;
+    text-align: center;
+
+    color: #25292D;
+}
+
+.recipe-search-description{
+    height: 32px;
+    margin-top: 16px;
+
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    /* identical to box height, or 178% */
+
+    text-align: center;
+    font-feature-settings: 'case' on;
+
+    color: #4A525A;
+}
+
+.recipe-search-form{
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+.recipe-search-form-input{
+    padding-top: 3px;
+}
+
+.recipe-search-form-input-field{
+    box-sizing: border-box;
+    width: 716px;
+    height: 73px;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 42px rgba(34, 39, 47, 0.04);
+    border-radius: 16px;
+}
+
+.recipe-search-form-button{
+    height: 73px;
+    width: 152px;
+    background: #FDB100;
+    border-radius: 16px;
+    border: 0px;
+    margin-left: 16px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+
+.recipe-search-form-tags{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    /* identical to box height, or 112% */
+
+    display: flex;
+    align-items: center;
+
+    color: #808080;
+}
