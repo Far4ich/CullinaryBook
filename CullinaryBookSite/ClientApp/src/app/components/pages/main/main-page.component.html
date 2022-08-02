@@ -1,7 +1,5 @@
-<app-header></app-header>
-
 <div class="body">
-    <img src="../../../../assets/images/main-background.svg" class="body-background">
+    <img class="body-background-img" src="../../../../assets/images/main-background.svg">
     <div class="slogan">
         <span class="slogan-title">
             Готовь и делись рецептами
@@ -113,18 +111,16 @@
         </span>
 
         <div class="recipe-search-form">
-            <form class="recipe-search-form-input" >
-                <mat-form-field class="recipe-search-form-input-field" appearance="outline">
-                    <mat-label>Название блюда....</mat-label>
-                    <input matInput type="string">
-                </mat-form-field>
-                <div>
-                    <span class="recipe-search-form-tags">Мясо Деликатесы Пирог Рыба</span>
+            <div>
+                <input class="recipe-search-form-input" placeholder="Название блюда...">
+                <div class="recipe-search-form-tags">   
+                    <span class="recipe-search-form-tags-item">Мясо</span>
+                    <span class="recipe-search-form-tags-item">Деликатесы</span>
+                    <span class="recipe-search-form-tags-item">Пироги</span>
+                    <span class="recipe-search-form-tags-item">Рыба</span>
                 </div>
-            </form>
+            </div>
             <button class="recipe-search-form-button">Поиск</button>
         </div>
     </div>
 </div>
-
-<app-footer></app-footer>
