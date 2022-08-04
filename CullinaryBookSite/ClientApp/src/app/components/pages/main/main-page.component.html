@@ -25,55 +25,55 @@
             Добавляй рецепты и указывай наиболее популярные теги. Это позволит быстро находить любые категории.
         </span>
 
-        <div class="tags-cards">
-            <mat-card class="tags-card">  
-                <div class="tags-card-content"> 
-                    <div class="tags-card-img-box">
-                        <img src="../../../../assets/images/ic-menu.svg" class="tags-card-img">
+        <div class="tags-preview-cards">
+            <mat-card class="tags-preview-cards-card">  
+                <div class="tags-preview-cards-card-content"> 
+                    <div class="tags-preview-cards-card-img-box">
+                        <img src="../../../../assets/images/ic-menu.svg" class="tags-preview-cards-card-img">
                     </div>
-                    <span class="tags-card-title">
+                    <span class="tags-preview-cards-card-title">
                         Простые блюда
                     </span>
-                    <span class="tags-card-description">
+                    <span class="tags-preview-cards-card-description">
                         Время приготвления таких блюд не более 1 часа
                     </span>
                 </div>
             </mat-card>
-            <mat-card class="tags-card">  
-                <div class="tags-card-content">
-                    <div class="tags-card-img-box">
-                        <img src="../../../../assets/images/ic-cook.svg" class="tags-card-img">
+            <mat-card class="tags-preview-cards-card">  
+                <div class="tags-preview-cards-card-content">
+                    <div class="tags-preview-cards-card-img-box">
+                        <img src="../../../../assets/images/ic-cook.svg" class="tags-preview-cards-card-img">
                     </div> 
-                    <span class="tags-card-title">
+                    <span class="tags-preview-cards-card-title">
                         Детское
                     </span>
-                    <span class="tags-card-description">
+                    <span class="tags-preview-cards-card-description">
                         Самые полезные блюда которые можно детям любого возраста
                     </span>
                 </div>
             </mat-card>
-            <mat-card class="tags-card">   
-                <div class="tags-card-content">
-                    <div class="tags-card-img-box">
-                        <img src="../../../../assets/images/ic-chef.svg" class="tags-card-img">
+            <mat-card class="tags-preview-cards-card">   
+                <div class="tags-preview-cards-card-content">
+                    <div class="tags-preview-cards-card-img-box">
+                        <img src="../../../../assets/images/ic-chef.svg" class="tags-preview-cards-card-img">
                     </div>
-                    <span class="tags-card-title">
+                    <span class="tags-preview-cards-card-title">
                         От шеф-поваров
                     </span>
-                    <span class="tags-card-description">
+                    <span class="tags-preview-cards-card-description">
                         Требуют умения, времени и терпения, зато как в ресторане
                     </span>
                 </div>
             </mat-card>
-            <mat-card class="tags-card">
-                <div class="tags-card-content">
-                    <div class="tags-card-img-box">
-                        <img src="../../../../assets/images/holiday.svg" class="tags-card-img">
+            <mat-card class="tags-preview-cards-card">
+                <div class="tags-preview-cards-card-content">
+                    <div class="tags-preview-cards-card-img-box">
+                        <img src="../../../../assets/images/holiday.svg" class="tags-preview-cards-card-img">
                     </div>   
-                    <span class="tags-card-title">
+                    <span class="tags-preview-cards-card-title">
                         На праздник
                     </span>
-                    <span class="tags-card-description">
+                    <span class="tags-preview-cards-card-description">
                         Чем удивить гостей, чтобы все были сыты за праздничным столом
                     </span>
                 </div>
@@ -81,26 +81,7 @@
         </div>
     </div>
 
-    <div class="day-recipe">
-        <img class="day-recipe-img" src="../../../../assets/images/day-recipe.svg">
-        <div class="day-recipe-content">
-            <div class="day-recipe-content-like-time">
-                <img class="day-recipe-content-like-time-img" src="../../../../assets/images/day-recipe-favorite_border.svg">
-                <span class="day-recipe-content-like-time-text">356</span>
-                <img class="day-recipe-content-like-time-img" src="../../../../assets/images/day-recipe-timer.svg">
-                <span class="day-recipe-content-like-time-text">35 минут</span>
-            </div>
-            <div class="day-recipe-content-yummy">
-                <img src="../../../../assets/images/day-recipe-yummy.svg">
-            </div>
-            <span class="day-recipe-content-title">
-                Тыквенный супчик на кокосовом молоке
-            </span>
-            <span class="day-recipe-content-description">
-                Если у вас осталась тыква, и вы не знаете что с ней сделать, то это решение для вас! Ароматный, согревающий суп-пюре на кокосовом молоке. Можно даже в Пост! 
-            </span>
-        </div>
-    </div>
+    <main-day-recipe class="day-recipe"></main-day-recipe>
 
     <div class="recipe-search">
         <span class="recipe-search-title">
@@ -110,17 +91,13 @@
             Введите примерное название блюда, а мы по тегам найдем его
         </span>
 
-        <div class="recipe-search-form">
-            <div>
-                <input class="recipe-search-form-input" placeholder="Название блюда...">
-                <div class="recipe-search-form-tags">   
-                    <span class="recipe-search-form-tags-item">Мясо</span>
-                    <span class="recipe-search-form-tags-item">Деликатесы</span>
-                    <span class="recipe-search-form-tags-item">Пироги</span>
-                    <span class="recipe-search-form-tags-item">Рыба</span>
-                </div>
-            </div>
-            <button class="recipe-search-form-button">Поиск</button>
+        <app-recipe-search></app-recipe-search>
+        
+        <div class="recipe-search-form-tags">   
+            <span class="recipe-search-form-tags-item">Мясо</span>
+            <span class="recipe-search-form-tags-item">Деликатесы</span>
+            <span class="recipe-search-form-tags-item">Пироги</span>
+            <span class="recipe-search-form-tags-item">Рыба</span>
         </div>
     </div>
 </div>

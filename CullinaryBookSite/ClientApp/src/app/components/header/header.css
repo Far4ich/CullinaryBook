@@ -9,9 +9,7 @@
 }
 
 .header-logo{
-    width: 99px;
-    height: 29px;
-    padding-right: 33px;
+    margin-right: 33px;
     
     font-family: 'Montserrat';
     font-style: normal;
@@ -40,9 +38,7 @@
 }
 
 .header-login{
-    height: 38px;
     display: flex;
-    
 }
 
 .header-login-img{

@@ -13,14 +13,18 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RecipeSearchComponent } from './components/recipe-search/recipe-search.component';
 
 import { MainPageComponent } from './components/pages/main/main-page.component';
+import { DayRecipeComponent } from './components/pages/main/day-recipe/day-recipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    RecipeSearchComponent,
+    DayRecipeComponent,
     MainPageComponent
   ],
   imports: [
