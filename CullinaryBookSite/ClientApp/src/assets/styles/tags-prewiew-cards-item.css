@@ -1,0 +1,45 @@
+.tags-preview-cards-card{
+    width: 278px;
+    height: 271px;
+    box-shadow: 0px 16px 72px rgba(34, 39, 47, 0.05);
+    border-radius: 24px;
+}
+
+.tags-preview-cards-card-content{
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tags-preview-cards-card-title{
+    height: 30px;
+    margin-top: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: #25292D;
+}
+
+.tags-preview-cards-card-description{
+    margin-top: 16px;
+    width: 230px;
+    height: 95px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #4A525A;
+}
+
+.tags-preview-cards-card-img-box{
+    width: 50px;
+    height: 50px;
+    background: #FFEFCC;
+    border-radius: 12px;
+}
+.tags-preview-cards-card-img{
+    margin: 13px 14px;
+}
