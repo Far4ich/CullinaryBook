@@ -26,13 +26,13 @@
         </span>
 
         <div class="tags-preview-cards">
-            <main-tag-prewiew-cards-item *ngFor="let element of tags"
-                                [element]="element">
-            </main-tag-prewiew-cards-item>
+            <tag-prewiew-cards-item *ngFor="let tag of tags"
+                                [tag]="tag">
+            </tag-prewiew-cards-item>
         </div>
     </div>
 
-    <main-day-recipe class="day-recipe"></main-day-recipe>
+    <day-recipe class="day-recipe"></day-recipe>
 
     <div class="recipe-search">
         <span class="recipe-search-title">

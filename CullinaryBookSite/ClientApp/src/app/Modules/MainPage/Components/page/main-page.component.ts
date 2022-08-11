@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
-import { ITag } from "../../shared/tag.interface";
+import { Tag } from "../../shared/tag";
 
 @Component({
     templateUrl:'./main-page.component.html',
-    styleUrls: ['../../../../assets/styles/main-page.css']
+    styleUrls: ['../../../../../assets/styles/main-page.css']
 })
 
 export class MainPageComponent{
-    public tags: ITag[] = [
+    public tags: Tag[] = [
         {
             title: "Простые блюда",
             description: "Время приготвления таких блюд не более 1 часа",
