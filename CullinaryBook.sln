@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CullinaryBookBackend", "CullinaryBookBackend\CullinaryBookBackend.csproj", "{5D001F58-4C14-472F-B9D4-BBCE7E00B5D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd", "CullinaryBookBackend\BackEnd.csproj", "{5D001F58-4C14-472F-B9D4-BBCE7E00B5D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CullinaryBookSite", "CullinaryBookSite\CullinaryBookSite.csproj", "{552C8819-E39C-4D7E-BCCC-F2CBB18A18CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontEnd", "CullinaryBookSite\FrontEnd.csproj", "{552C8819-E39C-4D7E-BCCC-F2CBB18A18CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
