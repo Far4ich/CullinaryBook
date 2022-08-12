@@ -2,7 +2,7 @@
 {
     public class Step
     {
-        public Step(int id, string order, string description, int recipeId)
+        public Step(int id, int order, string description, int recipeId)
         {
             Id = id;
             Order = order;
@@ -11,7 +11,7 @@
         }
 
         public int Id { get; private set; }
-        public string Order { get; private set; }
+        public int Order { get; private set; }
         public string Description { get; private set; }
         public int RecipeId { get; private set; }
     }
