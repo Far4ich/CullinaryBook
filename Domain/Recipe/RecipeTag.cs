@@ -1,4 +1,4 @@
-﻿namespace Domain.Models
+﻿namespace Domain.Recipe
 {
     public class RecipeTag
     {
