@@ -1,6 +1,4 @@
-﻿using Domain.Models;
-
-namespace Domain.RepositoryInterfaces
+﻿namespace Domain.Ingredient
 {
     public interface IIngredientRepository
     {

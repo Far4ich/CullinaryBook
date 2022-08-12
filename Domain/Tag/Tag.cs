@@ -1,4 +1,4 @@
-﻿namespace Domain.Models
+﻿namespace Domain.Tag
 {
     public class Tag
     {
