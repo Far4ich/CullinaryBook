@@ -16,5 +16,8 @@
         public string Login { get; private set; }
         public string Password { get; private set; }
         public string AboutMe { get; private set; }
+        public List<Like> Likes { get; set; } = new();
+        public List<Favorite> Favorites { get; set; } = new();
+        public List<Recipe.Recipe> Recipes { get; set; } = new();
     }
 }

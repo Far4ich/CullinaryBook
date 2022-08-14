@@ -1,4 +1,6 @@
-﻿namespace Domain.Recipe
+﻿using Domain.User;
+
+namespace Domain.Recipe
 {
     public class Recipe
     {
@@ -23,5 +25,11 @@
 
         public int AuthorId { get; private set; }
         public User.User Author { get; private set; }
+
+        public List<RecipeTag> RecipeTags { get; set; } = new();
+        public List<Step.Step> Staps { get; set; } = new();
+        public List<Ingredient.Ingredient> Ingredients { get; set; } = new();
+        public List<Like> Likes { get; set; } = new();
+        public List<Favorite> Favorites { get; set; } = new();
     }
 }
