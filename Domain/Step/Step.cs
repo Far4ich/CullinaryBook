@@ -1,8 +1,8 @@
-﻿namespace Domain.Step
+﻿namespace Domain.RecipeEntity
 {
     public class Step
     {
-        public Step(int id, int order, string description, int recipeId, Recipe.Recipe recipe)
+        public Step(int id, int order, string description, int recipeId, Recipe recipe)
         {
             Id = id;
             Order = order;
@@ -16,6 +16,6 @@
         public string Description { get; private set; }
 
         public int RecipeId { get; private set; }
-        public Recipe.Recipe Recipe { get; private set; }
+        public Recipe Recipe { get; private set; }
     }
 }

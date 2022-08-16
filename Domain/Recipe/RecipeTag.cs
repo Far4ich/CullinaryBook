@@ -1,8 +1,8 @@
-﻿namespace Domain.Recipe
+﻿namespace Domain.RecipeEntity
 {
     public class RecipeTag
     {
-        public RecipeTag(int recipeId, Recipe recipe, int tagId, Tag.Tag tag)
+        public RecipeTag(int recipeId, Recipe recipe, int tagId, Tag tag)
         {
             RecipeId = recipeId;
             Recipe = recipe;
@@ -13,6 +13,6 @@
         public int RecipeId { get; private set; }
         public Recipe Recipe { get; private set; }
         public int TagId { get; private set; }
-        public Tag.Tag Tag { get; private set; }
+        public Tag Tag { get; private set; }
     }
 }

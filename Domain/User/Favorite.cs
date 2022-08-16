@@ -1,8 +1,8 @@
-﻿namespace Domain.User
+﻿namespace Domain.RecipeEntity
 {
     public class Favorite
     {
-        public Favorite(int userId, User user, int recipeId, Recipe.Recipe recipe)
+        public Favorite(int userId, User user, int recipeId, Recipe recipe)
         {
             UserId = userId;
             RecipeId = recipeId;
@@ -13,6 +13,6 @@
         public int UserId { get; private set; }
         public User User { get; private set; }
         public int RecipeId { get; private set; }
-        public Recipe.Recipe Recipe { get; private set; }
+        public Recipe Recipe { get; private set; }
     }
 }
