@@ -6,6 +6,6 @@
         Recipe Get(int id);
         void Create(Recipe recipe);
         void Update(Recipe recipe);
-        void Delete(int recipeId);
+        void Delete(int id);
     }
 }
