@@ -1,4 +1,4 @@
-﻿namespace Domain.User
+﻿namespace Domain.RecipeEntity
 {
     public interface IUserRepository
     {

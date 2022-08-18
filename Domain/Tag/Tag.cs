@@ -1,4 +1,4 @@
-﻿namespace Domain.Tag
+﻿namespace Domain.RecipeEntity
 {
     public class Tag
     {
@@ -10,5 +10,7 @@
 
         public int Id { get; private set; }
         public string Title { get; private set; }
+
+        public List<RecipeTag> RecipeTag { get; set; } = new();
     }
 }

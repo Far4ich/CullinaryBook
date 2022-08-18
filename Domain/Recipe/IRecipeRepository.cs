@@ -1,11 +1,11 @@
-﻿namespace Domain.Recipe
+﻿namespace Domain.RecipeEntity
 {
     public interface IRecipeRepository
     {
         List<Recipe> GetAll();
         Recipe Get(int id);
-        void Update(Recipe recipe);
         void Create(Recipe recipe);
-        void Delete(Recipe recipe);
+        void Update(Recipe recipe);
+        void Delete(int id);
     }
 }

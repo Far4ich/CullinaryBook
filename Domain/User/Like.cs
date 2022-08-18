@@ -1,14 +1,18 @@
-﻿namespace Domain.User
+﻿namespace Domain.RecipeEntity
 {
     public class Like
     {
-        public Like(int userId, int recipeId)
+        public Like(int userId, User user, int recipeId, Recipe recipe)
         {
             UserId = userId;
             RecipeId = recipeId;
+            User = user;
+            Recipe = recipe;
         }
 
         public int UserId { get; private set; }
+        public User User { get; private set; }
         public int RecipeId { get; private set; }
+        public Recipe Recipe { get; private set; }
     }
 }

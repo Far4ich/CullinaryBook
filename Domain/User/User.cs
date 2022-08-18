@@ -1,4 +1,4 @@
-﻿namespace Domain.User
+﻿namespace Domain.RecipeEntity
 {
     public class User
     {
@@ -16,5 +16,8 @@
         public string Login { get; private set; }
         public string Password { get; private set; }
         public string AboutMe { get; private set; }
+        public List<Like> Like { get; set; } = new();
+        public List<Favorite> Favorite { get; set; } = new();
+        public List<Recipe> Recipe { get; set; } = new();
     }
 }
