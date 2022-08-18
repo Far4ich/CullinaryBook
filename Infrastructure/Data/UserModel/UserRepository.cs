@@ -1,4 +1,4 @@
-﻿using Domain.User;
+﻿using Domain.RecipeEntity;
 
 namespace Infrastructure.Data.UserModel
 {
@@ -21,7 +21,7 @@ namespace Infrastructure.Data.UserModel
             throw new NotImplementedException();
         }
 
-        public void Update(User user)
+        public void UpdateAboutMe(User user)
         {
             throw new NotImplementedException();
         }

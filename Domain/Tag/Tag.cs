@@ -12,5 +12,6 @@
         public string Title { get; private set; }
 
         public List<RecipeTag> RecipeTag { get; set; } = new();
+        public List<Recipe> Recipe { get; set; } = new();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Domain.Recipe;
+﻿using Domain.RecipeDto;
+using Domain.RecipeEntity;
 
 namespace Infrastructure.Data.RecipeModel
 {
@@ -10,12 +11,13 @@ namespace Infrastructure.Data.RecipeModel
         {
             _dbContext = dbContext;
         }
+
         public void Create(Recipe recipe)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Recipe recipe)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -26,6 +28,41 @@ namespace Infrastructure.Data.RecipeModel
         }
 
         public List<Recipe> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public RecipeTopDto GetBestRecipe()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RecipeTopDto> GetByTag(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFavorite(int recipeId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveLike(int recipeId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetFavorite(int recipeId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetLike(int recipeId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTags(List<Tag> tags, int id)
         {
             throw new NotImplementedException();
         }

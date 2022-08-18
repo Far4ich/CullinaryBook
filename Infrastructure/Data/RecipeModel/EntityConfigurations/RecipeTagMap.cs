@@ -1,4 +1,4 @@
-﻿using Domain.Recipe;
+﻿using Domain.RecipeEntity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

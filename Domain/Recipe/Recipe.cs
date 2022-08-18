@@ -23,9 +23,9 @@
 
         public int AuthorId { get; private set; }
         public User Author { get; private set; }
-
+        public List<Tag> Tag { get; private set; } = new();
         public List<RecipeTag> RecipeTag { get; set; } = new();
-        public List<Step> Stap { get; set; } = new();
+        public List<Step> Step { get; set; } = new();
         public List<Ingredient> Ingredient { get; set; } = new();
         public List<Like> Like { get; set; } = new();
         public List<Favorite> Favorite { get; set; } = new();

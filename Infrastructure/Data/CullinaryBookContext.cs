@@ -1,15 +1,7 @@
-﻿using Domain.User;
-using Domain.Ingredient;
-using Domain.Tag;
-using Domain.Recipe;
-using Domain.Step;
+﻿using Domain.RecipeEntity;
 using Infrastructure.UoW;
-using Infrastructure.Data.UserModel.EntityConfigurations;
-using Infrastructure.Data.IngredientModel.EntityConfigurations;
-using Infrastructure.Data.TagModel.EntityConfigurations;
-using Infrastructure.Data.RecipeModel.EntityConfigurations;
-using Infrastructure.Data.StepModel.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure.Data
 {
@@ -31,14 +23,7 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.ApplyConfiguration(new UserMap());
-            builder.ApplyConfiguration(new LikeMap());
-            builder.ApplyConfiguration(new FavoriteMap());
-            builder.ApplyConfiguration(new RecipeMap());
-            builder.ApplyConfiguration(new RecipeTagMap());
-            builder.ApplyConfiguration(new TagMap());
-            builder.ApplyConfiguration(new StepMap());
-            builder.ApplyConfiguration(new IngredientMap());
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)

@@ -1,4 +1,4 @@
-﻿using Domain.User;
+﻿using Domain.RecipeEntity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,6 +14,9 @@ namespace Infrastructure.Data.UserModel.EntityConfigurations
             builder.Property(x => x.Login);
             builder.Property(x => x.Password);
             builder.Property(x => x.AboutMe);
+            builder.HasMany(x => x.Recipe).WithOne(y => y.Author);
+            builder.HasMany(x => x.Like).WithOne(y => y.User);
+            builder.HasMany(x => x.Favorite).WithOne(y => y.User);
         }
     }
 }
