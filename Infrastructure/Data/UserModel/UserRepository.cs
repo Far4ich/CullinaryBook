@@ -21,7 +21,7 @@ namespace Infrastructure.Data.UserModel
             throw new NotImplementedException();
         }
 
-        public void UpdateAboutMe(User user)
+        public void Update(User user)
         {
             throw new NotImplementedException();
         }
