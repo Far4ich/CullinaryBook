@@ -17,8 +17,6 @@ namespace Infrastructure.Data.RecipeModel.EntityConfigurations
             builder.Property(x => x.Image);
             builder.HasMany(x => x.Step).WithOne(y => y.Recipe);
             builder.HasMany(x => x.Ingredient).WithOne(y => y.Recipe);
-            builder.HasMany(x => x.Like).WithOne(y => y.Recipe);
-            builder.HasMany(x => x.Favorite).WithOne(y => y.Recipe);
             builder.HasMany(x => x.Tag)
              .WithMany(y => y.Recipe)
              .UsingEntity<RecipeTag>(
