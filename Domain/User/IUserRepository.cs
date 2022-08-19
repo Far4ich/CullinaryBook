@@ -4,6 +4,6 @@
     {
         User Get(int id);
         void Create(User user);
-        void UpdateAboutMe(User user);
+        void Update(User user);
     }
 }

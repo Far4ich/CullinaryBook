@@ -1,5 +1,4 @@
-﻿using Domain.RecipeDto;
-using Domain.RecipeEntity;
+﻿using Domain.RecipeEntity;
 
 namespace Infrastructure.Data.RecipeModel
 {
@@ -17,12 +16,12 @@ namespace Infrastructure.Data.RecipeModel
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete(int recipeId)
         {
             throw new NotImplementedException();
         }
 
-        public Recipe Get(int id)
+        public Recipe Get(int recipeId)
         {
             throw new NotImplementedException();
         }
@@ -32,12 +31,12 @@ namespace Infrastructure.Data.RecipeModel
             throw new NotImplementedException();
         }
 
-        public RecipeTopDto GetBestRecipe()
+        public Recipe GetBestRecipe()
         {
             throw new NotImplementedException();
         }
 
-        public List<RecipeTopDto> GetByTag(int id)
+        public List<Recipe> GetByTag(int tagId)
         {
             throw new NotImplementedException();
         }
@@ -62,7 +61,7 @@ namespace Infrastructure.Data.RecipeModel
             throw new NotImplementedException();
         }
 
-        public void SetTags(List<Tag> tags, int id)
+        public void SetTags(List<Tag> tags, int recipeId)
         {
             throw new NotImplementedException();
         }
