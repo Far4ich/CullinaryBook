@@ -15,7 +15,7 @@ namespace Infrastructure.Data
         public DbSet<Favorite> Favorite { get; set; }
         public DbSet<Like> Like { get; set; }
         public DbSet<Recipe> Recipe { get; set; }
-        public DbSet<RecipeTag> RecipeId { get; set; }
+        public DbSet<RecipeTag> RecipeTag { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<Step> Step { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
