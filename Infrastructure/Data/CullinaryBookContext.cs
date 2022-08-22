@@ -1,11 +1,10 @@
 ﻿using Domain.RecipeEntity;
-using Infrastructure.UoW;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace Infrastructure.Data
 {
-    public class CullinaryBookContext : DbContext, IUnitOfWork
+    public class CullinaryBookContext : DbContext
     {
         public CullinaryBookContext(DbContextOptions<CullinaryBookContext> options) : base(options)
         {
@@ -24,13 +23,6 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
-
-        public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
-        {
-            await SaveChangesAsync(cancellationToken);
-
-            return true;
         }
     }
 }

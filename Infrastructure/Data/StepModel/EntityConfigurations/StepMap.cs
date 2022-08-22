@@ -12,6 +12,7 @@ namespace Infrastructure.Data.StepModel.EntityConfigurations
             builder.Property(x => x.Order);
             builder.Property(x => x.RecipeId);
             builder.Property(x => x.Description);
+            builder.HasOne(x => x.Recipe).WithMany(y => y.Steps);
         }
     }
 }

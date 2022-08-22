@@ -15,18 +15,16 @@ namespace Infrastructure.Data.RecipeModel.EntityConfigurations
             builder.Property(x => x.NumberOfServings);
             builder.Property(x => x.AuthorId);
             builder.Property(x => x.Image);
-            builder.HasMany(x => x.Step).WithOne(y => y.Recipe);
-            builder.HasMany(x => x.Ingredient).WithOne(y => y.Recipe);
-            builder.HasMany(x => x.Tag)
-             .WithMany(y => y.Recipe)
+            builder.HasMany(x => x.Tags)
+             .WithMany(y => y.Recipes)
              .UsingEntity<RecipeTag>(
                 tag => tag
                     .HasOne(recipeTag => recipeTag.Tag)
-                    .WithMany(tag => tag.RecipeTag)
+                    .WithMany(tag => tag.RecipeTags)
                     .HasForeignKey(recipeTag => recipeTag.TagId),
                 recipe => recipe
                     .HasOne(recipeTag => recipeTag.Recipe)
-                    .WithMany(recipe => recipe.RecipeTag)
+                    .WithMany(recipe => recipe.RecipeTags)
                     .HasForeignKey(recipeTag => recipeTag.RecipeId)
             );
         }

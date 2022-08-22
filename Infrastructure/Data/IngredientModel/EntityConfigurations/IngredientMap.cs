@@ -13,6 +13,8 @@ namespace Infrastructure.Data.IngredientModel.EntityConfigurations
             builder.Property(x => x.Products);
             builder.Property(x => x.Order);
             builder.Property(x => x.RecipeId);
+            builder.HasOne(x => x.Recipe)
+                .WithMany(y => y.Ingredients);
         }
     }
 }

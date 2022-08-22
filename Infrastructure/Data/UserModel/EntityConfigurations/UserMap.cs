@@ -14,7 +14,7 @@ namespace Infrastructure.Data.UserModel.EntityConfigurations
             builder.Property(x => x.Login);
             builder.Property(x => x.Password);
             builder.Property(x => x.AboutMe);
-            builder.HasMany(x => x.Recipe).WithOne(y => y.Author);
+            builder.HasMany(x => x.Recipes).WithOne(y => y.Author);
         }
     }
 }
