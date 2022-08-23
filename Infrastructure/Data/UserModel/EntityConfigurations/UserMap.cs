@@ -8,12 +8,11 @@ namespace Infrastructure.Data.UserModel.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Name);
-            builder.Property(x => x.Login);
-            builder.Property(x => x.Password);
-            builder.Property(x => x.AboutMe);
+            builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Login).HasMaxLength(20).IsRequired();
+            builder.Property(x => x.Password).HasMaxLength(100).IsRequired();
+            builder.Property(x => x.AboutMe).HasMaxLength(255);
             builder.HasMany(x => x.Recipes).WithOne(y => y.Author);
         }
     }

@@ -8,8 +8,8 @@ namespace Infrastructure.Data.UserModel.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Like> builder)
         {        
-            builder.Property(x => x.UserId);
-            builder.Property(x => x.RecipeId);
+            builder.Property(x => x.UserId).IsRequired();
+            builder.Property(x => x.RecipeId).IsRequired();
             builder.HasOne(x => x.User).WithMany(y => y.Likes);
             builder.HasOne(x => x.Recipe).WithMany(y => y.Likes);
         }

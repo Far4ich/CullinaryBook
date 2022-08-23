@@ -8,10 +8,10 @@ namespace Infrastructure.Data.StepModel.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Step> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Order);
-            builder.Property(x => x.RecipeId);
-            builder.Property(x => x.Description);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Order).IsRequired();
+            builder.Property(x => x.RecipeId).IsRequired();
+            builder.Property(x => x.Description).HasMaxLength(511).IsRequired();
             builder.HasOne(x => x.Recipe).WithMany(y => y.Steps);
         }
     }

@@ -8,12 +8,12 @@ namespace Infrastructure.Data.RecipeModel.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Recipe> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Title);
-            builder.Property(x => x.Description);
-            builder.Property(x => x.CookingMinutes);
-            builder.Property(x => x.NumberOfServings);
-            builder.Property(x => x.AuthorId);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Title).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.Description).HasMaxLength(511).IsRequired();
+            builder.Property(x => x.CookingMinutes).IsRequired();
+            builder.Property(x => x.NumberOfServings).IsRequired();
+            builder.Property(x => x.AuthorId).IsRequired();
             builder.Property(x => x.Image);
             builder.HasMany(x => x.Tags)
              .WithMany(y => y.Recipes)
