@@ -8,6 +8,7 @@ namespace Infrastructure.Data.TagModel.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Tag> builder)
         {
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Title).HasMaxLength(50).IsRequired();
         }

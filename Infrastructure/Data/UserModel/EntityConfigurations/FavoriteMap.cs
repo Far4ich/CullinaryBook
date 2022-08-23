@@ -10,8 +10,12 @@ namespace Infrastructure.Data.UserModel.EntityConfigurations
         {
             builder.Property(x => x.UserId).IsRequired();
             builder.Property(x => x.RecipeId).IsRequired();
-            builder.HasOne(x => x.User).WithMany(y => y.Favorites);
-            builder.HasOne(x => x.Recipe).WithMany(y => y.Favorites);
+            builder.HasOne(x => x.User)
+                .WithMany(y => y.Favorites)
+                .HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.Recipe)
+                .WithMany(y => y.Favorites)
+                .HasForeignKey(x => x.RecipeId);
         }
     }
 }
