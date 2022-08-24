@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Data;
 using Infrastructure.Data.RecipeModel;
 using Infrastructure.Data.UserModel;
+using Domain.UoW;
 
 namespace Infrastructure.UoW;
 
