@@ -16,6 +16,9 @@ namespace Infrastructure.Data.RecipeModel.EntityConfigurations
             builder.Property(x => x.NumberOfServings).IsRequired();
             builder.Property(x => x.AuthorId).IsRequired();
             builder.Property(x => x.Image).HasMaxLength(100);
+            builder.HasOne(x => x.Author)
+                .WithMany(y => y.Recipes)
+                .HasForeignKey(x => x.AuthorId);
             builder.HasMany(x => x.Tags)
              .WithMany(y => y.Recipes)
              .UsingEntity<RecipeTag>(

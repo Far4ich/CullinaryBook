@@ -1,6 +1,10 @@
 ﻿using Domain.RecipeEntity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using Infrastructure.Data.UserModel.EntityConfigurations;
+using Infrastructure.Data.IngredientModel.EntityConfigurations;
+using Infrastructure.Data.TagModel.EntityConfigurations;
+using Infrastructure.Data.RecipeModel.EntityConfigurations;
+using Infrastructure.Data.StepModel.EntityConfigurations;
 
 namespace Infrastructure.Data
 {
@@ -21,7 +25,13 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.ApplyConfiguration(new UserMap());
+            builder.ApplyConfiguration(new RecipeMap());
+            builder.ApplyConfiguration(new LikeMap());
+            builder.ApplyConfiguration(new FavoriteMap());
+            builder.ApplyConfiguration(new TagMap());
+            builder.ApplyConfiguration(new StepMap());
+            builder.ApplyConfiguration(new IngredientMap());
         }
     }
 }
