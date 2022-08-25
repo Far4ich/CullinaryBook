@@ -26,10 +26,11 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UserMap());
+            builder.ApplyConfiguration(new TagMap());
             builder.ApplyConfiguration(new RecipeMap());
             builder.ApplyConfiguration(new LikeMap());
             builder.ApplyConfiguration(new FavoriteMap());
-            builder.ApplyConfiguration(new TagMap());
+           //builder.ApplyConfiguration(new RecipeTagMap());
             builder.ApplyConfiguration(new StepMap());
             builder.ApplyConfiguration(new IngredientMap());
         }

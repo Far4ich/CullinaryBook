@@ -1,15 +1,16 @@
-﻿namespace Domain.RecipeEntity
+﻿using EasyAbp.Abp.EntityUi.Entities;
+
+namespace Domain.RecipeEntity
 {
     public class Like
     {
-        public Like(int userId, User user, int recipeId, Recipe recipe)
+        public Like(int id, int userId, int recipeId)
         {
+            Id = id;
             UserId = userId;
             RecipeId = recipeId;
-            User = user;
-            Recipe = recipe;
         }
-
+        public int Id { get; private set; }
         public int UserId { get; private set; }
         public User User { get; private set; }
         public int RecipeId { get; private set; }

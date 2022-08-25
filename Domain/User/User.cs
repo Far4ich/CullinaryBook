@@ -1,4 +1,6 @@
-﻿namespace Domain.RecipeEntity
+﻿using EasyAbp.Abp.EntityUi.Entities;
+
+namespace Domain.RecipeEntity
 {
     public class User
     {
