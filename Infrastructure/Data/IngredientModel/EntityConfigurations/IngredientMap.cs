@@ -12,7 +12,7 @@ namespace Infrastructure.Data.IngredientModel.EntityConfigurations
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Title).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Products).HasMaxLength(511).IsRequired();
-            builder.Property(x => x.Order).IsRequired();
+            builder.Property(x => x.OrderNumber).IsRequired();
             builder.Property(x => x.RecipeId).IsRequired();
             builder.HasOne(x => x.Recipe)
                 .WithMany(y => y.Ingredients)

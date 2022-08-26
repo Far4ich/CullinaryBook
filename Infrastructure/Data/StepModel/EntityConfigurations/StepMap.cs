@@ -10,7 +10,7 @@ namespace Infrastructure.Data.StepModel.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Order).IsRequired();
+            builder.Property(x => x.OrderNumber).IsRequired();
             builder.Property(x => x.RecipeId).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(511).IsRequired();
             builder.HasOne(x => x.Recipe)
