@@ -1,10 +1,13 @@
-﻿using EasyAbp.Abp.EntityUi.Entities;
-
-namespace Domain.RecipeEntity
+﻿namespace Domain.RecipeEntity
 {
     public class User
     {
-        public User(int id, string name, string login, string password, string aboutMe)
+        public User(
+            int id,
+            string name,
+            string login,
+            string password,
+            string aboutMe)
         {
             Id = id;
             Name = name;

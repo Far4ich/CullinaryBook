@@ -1,10 +1,15 @@
-﻿using EasyAbp.Abp.EntityUi.Entities;
-
-namespace Domain.RecipeEntity
+﻿namespace Domain.RecipeEntity
 {
     public class Recipe
     {
-        public Recipe(int id, string title, string description, int cookingMinutes, int numberOfServings, string image, int authorId)
+        public Recipe(
+            int id,
+            string title,
+            string description,
+            int cookingMinutes,
+            int numberOfServings,
+            string image,
+            int authorId)
         {
             Id = id;
             Title = title;

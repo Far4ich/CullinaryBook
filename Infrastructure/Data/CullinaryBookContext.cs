@@ -30,7 +30,6 @@ namespace Infrastructure.Data
             builder.ApplyConfiguration(new RecipeMap());
             builder.ApplyConfiguration(new LikeMap());
             builder.ApplyConfiguration(new FavoriteMap());
-           //builder.ApplyConfiguration(new RecipeTagMap());
             builder.ApplyConfiguration(new StepMap());
             builder.ApplyConfiguration(new IngredientMap());
         }

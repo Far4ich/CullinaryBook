@@ -1,10 +1,12 @@
-﻿using EasyAbp.Abp.EntityUi.Entities;
-
-namespace Domain.RecipeEntity
+﻿namespace Domain.RecipeEntity
 {
     public class Step
     {
-        public Step(int id, int order, string description, int recipeId)
+        public Step(
+            int id,
+            int order,
+            string description,
+            int recipeId)
         {
             Id = id;
             Order = order;
