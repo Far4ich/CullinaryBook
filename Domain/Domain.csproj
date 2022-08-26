@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EasyAbp.Abp.EntityUi.Domain" Version="0.5.3" />
-  </ItemGroup>
-
 </Project>

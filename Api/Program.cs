@@ -1,5 +1,4 @@
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,19 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<CullinaryBookContext>(option =>
-{
-    try
-    {
-        string connectionString = builder.Configuration.GetValue<string>("DefaultConnection");
-        option.UseSqlServer(connectionString, b => b.MigrationsAssembly("Infrastructure.Migrations"));
-    }
-    catch (Exception)
-    {
-        
-    }
-});
 
+string connectionString = builder.Configuration.GetValue<string>("DefaultConnection");
+
+builder.Services.AddEntityFramework(connectionString);
 
 var app = builder.Build();
 
