@@ -13,22 +13,22 @@ namespace Infrastructure.Data.RecipeModel
 
         public void Create(Recipe recipe)
         {
-            throw new NotImplementedException();
+            _dbContext.Recipe.Add(recipe);
         }
 
         public void Delete(int recipeId)
         {
-            throw new NotImplementedException();
+            _dbContext.Recipe.Remove(Get(recipeId));
         }
 
         public Recipe Get(int recipeId)
         {
-            throw new NotImplementedException();
+            return _dbContext.Recipe.SingleOrDefault(recipe => recipe.Id == recipeId);
         }
 
         public List<Recipe> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.Recipe.ToList();
         }
 
         public Recipe GetBestRecipe()
@@ -38,37 +38,34 @@ namespace Infrastructure.Data.RecipeModel
 
         public List<Recipe> GetByTag(int tagId)
         {
-            throw new NotImplementedException();
+            return (List<Recipe>)_dbContext.Recipe.Where(recipe => recipe.Tags.Find(t => t.Id == tagId) != null);
         }
-
+         
         public void RemoveFavorite(int recipeId, int userId)
         {
-            throw new NotImplementedException();
+            _dbContext.Favorite.Remove(_dbContext.Favorite.SingleOrDefault(favorite =>
+                favorite.RecipeId == recipeId && favorite.UserId == userId));
         }
 
         public void RemoveLike(int recipeId, int userId)
         {
-            throw new NotImplementedException();
+            _dbContext.Like.Remove(_dbContext.Like.SingleOrDefault(like =>
+                like.RecipeId == recipeId && like.UserId == userId));
         }
 
         public void SetFavorite(int recipeId, int userId)
         {
-            throw new NotImplementedException();
+            _dbContext.Favorite.Add(new Favorite(0, userId, recipeId));
         }
 
         public void SetLike(int recipeId, int userId)
         {
-            throw new NotImplementedException();
-        }
-
-        public void SetTags(List<Tag> tags, int recipeId)
-        {
-            throw new NotImplementedException();
+            _dbContext.Like.Add(new Like(0, userId, recipeId));
         }
 
         public void Update(Recipe recipe)
         {
-            throw new NotImplementedException();
+            _dbContext.Recipe.Update(recipe);
         }
     }
 }
