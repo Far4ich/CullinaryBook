@@ -2,7 +2,14 @@
 {
     public class Recipe
     {
-        public Recipe(int id, string title, string description, int cookingMinutes, int numberOfServings, string image, int authorId, User author)
+        public Recipe(
+            int id,
+            string title,
+            string description,
+            int cookingMinutes,
+            int numberOfServings,
+            string image,
+            int authorId)
         {
             Id = id;
             Title = title;
@@ -10,7 +17,6 @@
             CookingMinutes = cookingMinutes;
             NumberOfServings = numberOfServings;
             AuthorId = authorId;
-            Author = author;
             Image = image;
         }
 
@@ -23,11 +29,11 @@
 
         public int AuthorId { get; private set; }
         public User Author { get; private set; }
-
-        public List<RecipeTag> RecipeTag { get; set; } = new();
-        public List<Step> Stap { get; set; } = new();
-        public List<Ingredient> Ingredient { get; set; } = new();
-        public List<Like> Like { get; set; } = new();
-        public List<Favorite> Favorite { get; set; } = new();
+        public List<Tag> Tags { get; private set; } = new();
+        public List<RecipeTag> RecipeTags { get; set; } = new();
+        public List<Step> Steps { get; set; } = new();
+        public List<Ingredient> Ingredients { get; set; } = new();
+        public List<Like> Likes { get; set; } = new();
+        public List<Favorite> Favorites { get; set; } = new();
     }
 }

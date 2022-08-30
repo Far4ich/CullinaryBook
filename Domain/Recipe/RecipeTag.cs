@@ -2,14 +2,16 @@
 {
     public class RecipeTag
     {
-        public RecipeTag(int recipeId, Recipe recipe, int tagId, Tag tag)
+        public RecipeTag(
+            int id,
+            int recipeId, 
+            int tagId)
         {
+            Id = id;
             RecipeId = recipeId;
-            Recipe = recipe;
             TagId = tagId;
-            Tag = tag;
         }
-
+        public int Id { get; private set; }
         public int RecipeId { get; private set; }
         public Recipe Recipe { get; private set; }
         public int TagId { get; private set; }
