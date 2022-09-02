@@ -8,9 +8,11 @@
             Никаких кулинарных книг и блокнотов! Храни все любимые рецепты в одном месте.
         </span>
         <div class="slogan-buttons">    
-            <button class="slogan-buttons-add-recipe">
+            <a routerLink="/create-recipe">
+                <button class="slogan-buttons-add-recipe">
                 + Добавить рецепт
-            </button>
+                </button>
+            </a>
             <button class="slogan-buttons-login">
                 Войти
             </button>
@@ -43,12 +45,5 @@
         </span>
 
         <app-recipe-search></app-recipe-search>
-        
-        <div class="recipe-search-form-tags">   
-            <span class="recipe-search-form-tags-item">Мясо</span>
-            <span class="recipe-search-form-tags-item">Деликатесы</span>
-            <span class="recipe-search-form-tags-item">Пироги</span>
-            <span class="recipe-search-form-tags-item">Рыба</span>
-        </div>
     </div>
 </div>

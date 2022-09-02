@@ -10,6 +10,8 @@
 
 .body
 {
+    max-width: 1440px;
+    margin: 0px auto;
     background: url(../images/background-wave.svg);
     background-size: cover;
 }

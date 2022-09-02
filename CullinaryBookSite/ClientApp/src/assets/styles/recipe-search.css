@@ -7,6 +7,7 @@
 .recipe-search-form-input{
     width: 652px;
     height: 17px;
+    padding: 11px 24px;
     background: #FFFFFF;
     box-shadow: 0px 8px 42px rgba(34, 39, 47, 0.04);
     border-radius: 16px;
@@ -37,4 +38,18 @@
     text-align: center;
     text-transform: capitalize;
     color: #FFFFFF;
+}
+
+.recipe-search-form-tags{
+    margin-top: 22px;  
+}
+
+.recipe-search-form-tags-item{
+    margin-right: 12px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #808080;
 }

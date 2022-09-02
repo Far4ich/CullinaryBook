@@ -8,6 +8,7 @@ import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 
 import { MainPageModule } from '../Modules/MainPage/main-page.module';
+import { CreateRecipePageModule } from '../Modules/CreateRecipePage/create-recipe-page.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MainPageModule } from '../Modules/MainPage/main-page.module';
   imports: [
     BrowserModule,
     MainPageModule,
+    CreateRecipePageModule,
     AppRoutingModule
   ],
   providers: [],
