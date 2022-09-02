@@ -3,11 +3,9 @@
     public class RecipeTag
     {
         public RecipeTag(
-            int id,
             int recipeId, 
             int tagId)
         {
-            Id = id;
             RecipeId = recipeId;
             TagId = tagId;
         }

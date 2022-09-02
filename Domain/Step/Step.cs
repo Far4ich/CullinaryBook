@@ -3,12 +3,10 @@
     public class Step
     {
         public Step(
-            int id,
             int orderNumber,
             string description,
             int recipeId)
         {
-            Id = id;
             OrderNumber = orderNumber;
             Description = description;
             RecipeId = recipeId;

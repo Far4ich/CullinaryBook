@@ -1,4 +1,5 @@
 ﻿using Domain.RecipeEntity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.RecipeModel
 {
@@ -11,26 +12,35 @@ namespace Infrastructure.Data.RecipeModel
             _dbContext = dbContext;
         }
 
-        public void Create(Recipe recipe)
+        public async Task Create(Recipe recipe)
         {
-            _dbContext.Recipe.Add(recipe);
+            await _dbContext.Recipe.AddAsync(recipe);
         }
 
-        public void Delete(int recipeId)
+        //перекинуть в сервис добавить проверку на null
+        public async Task Delete(int recipeId)
         {
-            _dbContext.Recipe.Remove(Get(recipeId));
+            Recipe recipe = await Get(recipeId);
+            _dbContext.Recipe.Remove(recipe);
         }
 
-        public Recipe Get(int recipeId)
+        public async Task<Recipe> Get(int recipeId)
         {
-            return _dbContext.Recipe.SingleOrDefault(recipe => recipe.Id == recipeId);
+            var recipe = await _dbContext.Recipe
+                .Where(recipe => recipe.Id == recipeId)
+                .Include(recipe=>recipe.Ingredients)
+                .Include(recipe=>recipe.Steps)
+                .Include(x=>x.Likes)
+                .FirstOrDefaultAsync();
+            return recipe;
         }
 
-        public List<Recipe> GetAll()
+        public async Task<List<Recipe>> GetAll()
         {
-            return _dbContext.Recipe.ToList();
+            return await _dbContext.Recipe
+                .ToListAsync();
         }
-
+        //по макс лайкам
         public Recipe GetBestRecipe()
         {
             throw new NotImplementedException();
@@ -38,29 +48,33 @@ namespace Infrastructure.Data.RecipeModel
 
         public List<Recipe> GetByTag(int tagId)
         {
-            return (List<Recipe>)_dbContext.Recipe.Where(recipe => recipe.Tags.Find(t => t.Id == tagId) != null);
-        }
-         
-        public void RemoveFavorite(int recipeId, int userId)
-        {
-            _dbContext.Favorite.Remove(_dbContext.Favorite.SingleOrDefault(favorite =>
-                favorite.RecipeId == recipeId && favorite.UserId == userId));
+            throw new NotImplementedException();
         }
 
-        public void RemoveLike(int recipeId, int userId)
+        //перекинуть в сервис, добавить проверку на null
+        public async Task RemoveFavorite(int recipeId, int userId)
         {
-            _dbContext.Like.Remove(_dbContext.Like.SingleOrDefault(like =>
-                like.RecipeId == recipeId && like.UserId == userId));
+            var favorite = await _dbContext.Favorite
+                .SingleOrDefaultAsync(favorite => favorite.RecipeId == recipeId && favorite.UserId == userId);
+            _dbContext.Favorite.Remove(favorite);
         }
 
-        public void SetFavorite(int recipeId, int userId)
+        //перекинуть в сервис, добавить проверку на null
+        public async Task RemoveLike(int recipeId, int userId)
         {
-            _dbContext.Favorite.Add(new Favorite(0, userId, recipeId));
+            var like = await _dbContext.Like
+                .SingleOrDefaultAsync(like => like.RecipeId == recipeId && like.UserId == userId);
+            _dbContext.Like.Remove(like);
         }
 
-        public void SetLike(int recipeId, int userId)
+        public async Task SetFavorite(int recipeId, int userId)
         {
-            _dbContext.Like.Add(new Like(0, userId, recipeId));
+            await _dbContext.Favorite.AddAsync(new Favorite(userId, recipeId));
+        }
+
+        public async Task SetLike(int recipeId, int userId)
+        {
+            await _dbContext.Like.AddAsync(new Like(userId, recipeId));
         }
 
         public void Update(Recipe recipe)

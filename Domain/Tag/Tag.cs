@@ -2,9 +2,8 @@
 {
     public class Tag
     {
-        public Tag(int id, string title)
+        public Tag(string title)
         {
-            Id = id;
             Title = title;
         }
 
