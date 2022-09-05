@@ -31,7 +31,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IActionResult CreateRecipes([FromBody]RecipeFullDto recipe)
+        public IActionResult CreateRecipes([FromBody]RecipeDto recipe)
         {
             _recipeService.Create(recipe);
             return Ok();
@@ -47,7 +47,7 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("update")]
-        public IActionResult UpdateRecipes([FromBody] RecipeFullDto recipe)
+        public IActionResult UpdateRecipes([FromBody] RecipeDto recipe)
         {
             _recipeService.Update(recipe);
             return Ok();

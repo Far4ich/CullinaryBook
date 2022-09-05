@@ -30,15 +30,16 @@ namespace Infrastructure.Data.RecipeModel
                 .Where(recipe => recipe.Id == recipeId)
                 .Include(recipe=>recipe.Ingredients)
                 .Include(recipe=>recipe.Steps)
+                .Include(recipe=>recipe.Author)
                 .Include(x=>x.Likes)
+                .Include(recipe=>recipe.Favorites)
                 .FirstOrDefaultAsync();
             return recipe;
         }
 
         public async Task<List<Recipe>> GetAll()
         {
-            return await _dbContext.Recipe
-                .ToListAsync();
+            return await _dbContext.Recipe.ToListAsync();
         }
         //по макс лайкам
         public Recipe GetBestRecipe()

@@ -1,7 +1,7 @@
 ﻿using Domain.RecipeEntity;
 using Api.Dto;
 
-namespace Api.Mappers
+namespace Api.Services.Mappers
 {
     public static class RecipeMapper
     {
@@ -16,23 +16,9 @@ namespace Api.Mappers
                 recipe.Likes.Capacity);
         }
 
-        public static RecipeListDto MapToRecipeListDto(this Recipe recipe)
+        public static RecipeDto MapToRecipeDto(this Recipe recipe)
         {
-            return new RecipeListDto(
-                recipe.Id,
-                recipe.Title,
-                recipe.Description,
-                recipe.CookingMinutes,
-                recipe.NumberOfServings,
-                recipe.Image,
-                recipe.Tags,
-                recipe.Likes,
-                recipe.Favorites);
-        }
-
-        public static RecipeFullDto MapToRecipeFullDto(this Recipe recipe)
-        {
-            return new RecipeFullDto(
+            return new RecipeDto(
                 recipe.Id,
                 recipe.Title,
                 recipe.Description,
@@ -40,30 +26,25 @@ namespace Api.Mappers
                 recipe.NumberOfServings,
                 recipe.Image,
                 recipe.AuthorId,
-                recipe.Tags,
-                recipe.Likes,
-                recipe.Favorites,
-                recipe.Ingredients,
-                recipe.Steps);
+                recipe.Tags.ConvertAll(x => x.MapToTagDto()),
+                recipe.Likes.ConvertAll(x => x.MapToLikeDto()),
+                recipe.Favorites.ConvertAll(x => x.MapToFavoriteDto()),
+                recipe.Ingredients.ConvertAll(x => x.MapToIngredientDto()),
+                recipe.Steps.ConvertAll(x => x.MapToStepDto()));
         }
-
-        public static Recipe MapToRecipe(this RecipeFullDto recipeBestDto)
+        public static RecipeShortDto MapToRecipeShortDto(this Recipe recipe)
         {
-            return new Recipe(
-                recipeBestDto.Title,
-                recipeBestDto.Description,
-                recipeBestDto.CookingMinutes,
-                recipeBestDto.NumberOfServings,
-                recipeBestDto.Image,
-                recipeBestDto.AuthorId)
-            {
-                Id = recipeBestDto.Id,
-                Tags = recipeBestDto.Tags,
-                Likes = recipeBestDto.Likes,
-                Favorites = recipeBestDto.Favorites,
-                Ingredients = recipeBestDto.Ingredients,
-                Steps = recipeBestDto.Steps
-            };
+            return new RecipeShortDto(
+                recipe.Id,
+                recipe.Title,
+                recipe.Description,
+                recipe.CookingMinutes,
+                recipe.NumberOfServings,
+                recipe.Image,
+                recipe.AuthorId,
+                recipe.Tags.ConvertAll(x => x.MapToTagDto()),
+                recipe.Likes.ConvertAll(x => x.MapToLikeDto()),
+                recipe.Favorites.ConvertAll(x => x.MapToFavoriteDto()));
         }
     }
 }

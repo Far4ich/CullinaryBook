@@ -1,7 +1,8 @@
 ﻿using Api.Dto;
 using Domain.RecipeEntity;
 using Domain.UoW;
-using Api.Mappers;
+using Api.Services.Mappers;
+using Api.Services.Builders;
 
 namespace Api.Services
 {
@@ -15,81 +16,92 @@ namespace Api.Services
             _recipeRepository = repository;
             _unitOfWork = unitOfWork;
         }
-        public void Create(RecipeFullDto recipeFullDto)
+        public async Task Create(RecipeDto recipeDto)
         {
-            if (recipeFullDto == null)
+            if (recipeDto == null)
             {
                 throw new Exception($"{nameof(Recipe)} not found");
             }
 
-            Recipe recipeEntity = recipeFullDto.MapToRecipe();
+            IRecipeBuilder recipeBuilder = new RecipeBuilder();
+            RecipeDirector recipeDirector = new(recipeBuilder);
+            recipeDirector.Construct(recipeDto);
+            Recipe recipeEntity = recipeBuilder.GetResult();
 
-            _recipeRepository.Create(recipeEntity);
+            await _recipeRepository.Create(recipeEntity);
 
-            _unitOfWork.SaveEntitiesAsync();
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public void Delete(int recipeId)
+        public async Task Delete(int recipeId)
         {
-            _recipeRepository.Delete(recipeId);
+            await _recipeRepository.Delete(recipeId);
 
-            _unitOfWork.SaveEntitiesAsync();
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public RecipeFullDto Get(int recipeId)
+        public async Task<RecipeDto> Get(int recipeId)
         {
-            Recipe recipe = _recipeRepository.Get(recipeId).Result;
+            Recipe recipe = await _recipeRepository.Get(recipeId);
             if (recipe == null)
             {
                 throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
             }
 
-            return recipe.MapToRecipeFullDto();
+            return recipe.MapToRecipeDto();
         }
 
-        public List<RecipeListDto> GetAll()
+        public async Task<List<RecipeShortDto>> GetAll()
         {
-            List<Recipe> recipes = _recipeRepository.GetAll().Result;
-            return recipes.ConvertAll(x => x.MapToRecipeListDto());
+            List<Recipe> recipes = await _recipeRepository.GetAll();
+            return recipes.ConvertAll(x => x.MapToRecipeShortDto());
         }
 
-        public RecipeBestDto GetBestRecipe()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<RecipeListDto> GetByTag(int tagId)
+        public async Task<RecipeBestDto> GetBestRecipe()
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveFavorite(int recipeId, int userId)
+        public async Task<List<RecipeShortDto>> GetByTag(int tagId)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveLike(int recipeId, int userId)
+        public async Task RemoveFavorite(int recipeId, int userId)
         {
-            _recipeRepository.RemoveLike(recipeId, userId);
+            throw new NotImplementedException();
         }
 
-        public void SetFavorite(int recipeId, int userId)
+        public async Task RemoveLike(int recipeId, int userId)
         {
-            _recipeRepository.SetFavorite(recipeId, userId);
+            await _recipeRepository.RemoveLike(recipeId, userId);
         }
 
-        public void SetLike(int recipeId, int userId)
+        public async Task SetFavorite(int recipeId, int userId)
         {
-            _recipeRepository.SetLike(recipeId, userId);
+            await _recipeRepository.SetFavorite(recipeId, userId);
         }
 
-        public void Update(RecipeFullDto recipe)
+        public async Task SetLike(int recipeId, int userId)
         {
-            if(recipe == null)
+            await _recipeRepository.SetLike(recipeId, userId);
+        }
+
+        public async Task Update(RecipeDto recipeDto)
+        {
+            if(recipeDto == null)
             {
                 throw new Exception($"{nameof(Recipe)} not found");
             }
-            _recipeRepository.Update(recipe.MapToRecipe());
+
+            IRecipeBuilder recipeBuilder = new RecipeBuilder();
+            RecipeDirector recipeDirector = new(recipeBuilder);
+            recipeDirector.Construct(recipeDto);
+            Recipe recipeEntity = recipeBuilder.GetResult();
+
+            _recipeRepository.Update(recipeEntity);
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
     }
 }

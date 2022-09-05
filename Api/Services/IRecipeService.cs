@@ -5,16 +5,16 @@ namespace Api.Services
 {
     public interface IRecipeService
     {
-        List<RecipeListDto> GetAll();
-        RecipeFullDto Get(int recipeId);
-        List<RecipeListDto> GetByTag(int tagId);
-        RecipeBestDto GetBestRecipe();
-        void Create(RecipeFullDto recipe);
-        void Update(RecipeFullDto recipe);
-        void Delete(int recipeId);
-        void SetLike(int recipeId, int userId);
-        void RemoveLike(int recipeId, int userId);
-        void SetFavorite(int recipeId, int userId);
-        void RemoveFavorite(int recipeId, int userId);
+        Task<List<RecipeShortDto>> GetAll();
+        Task<RecipeDto> Get(int recipeId);
+        Task<List<RecipeShortDto>> GetByTag(int tagId);
+        Task<RecipeBestDto> GetBestRecipe();
+        Task Create(RecipeDto recipe);
+        Task Update(RecipeDto recipe);
+        Task Delete(int recipeId);
+        Task SetLike(int recipeId, int userId);
+        Task RemoveLike(int recipeId, int userId);
+        Task SetFavorite(int recipeId, int userId);
+        Task RemoveFavorite(int recipeId, int userId);
     }
 }
