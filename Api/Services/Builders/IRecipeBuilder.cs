@@ -1,12 +1,16 @@
-﻿using Domain.RecipeEntity;
-using Api.Dto;
+﻿using Api.Dto;
+using Domain.RecipeEntity;
 
 namespace Api.Services.Builders
 {
     public interface IRecipeBuilder
     {
-        public void BuildMainData(RecipeDto recipeDto);
-        public void BuildRelations(RecipeDto recipeDto);
-        public Recipe GetResult();
+        RecipeBuilder BuildNewRecipe();
+        RecipeBuilder BuildRecipeForUpdate(Recipe recipe);
+        RecipeBuilder BuildIngredients(RecipeEditDto recipeDto);
+        RecipeBuilder BuildRecipeData(RecipeEditDto recipeDto);
+        RecipeBuilder BuildSteps(RecipeEditDto recipeDto);
+        RecipeBuilder BuildTags(RecipeEditDto recipeDto);
+        Recipe GetResult();
     }
 }

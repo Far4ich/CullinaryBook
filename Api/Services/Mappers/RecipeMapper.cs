@@ -13,9 +13,23 @@ namespace Api.Services.Mappers
                 recipe.Description,
                 recipe.CookingMinutes,
                 recipe.Image,
-                recipe.Likes.Capacity);
+                recipe.Likes.Count());
         }
 
+        public static RecipeEditDto MapToRecipeEditDto(this Recipe recipe)
+        {
+            return new RecipeEditDto(
+                recipe.Id,
+                recipe.Title,
+                recipe.Description,
+                recipe.CookingMinutes,
+                recipe.NumberOfServings,
+                recipe.Image,
+                recipe.AuthorId,
+                recipe.Tags.ConvertAll(x => x.MapToTagDto()),
+                recipe.Ingredients.ConvertAll(x => x.MapToIngredientDto()),
+                recipe.Steps.ConvertAll(x => x.MapToStepDto()));
+        }
         public static RecipeDto MapToRecipeDto(this Recipe recipe)
         {
             return new RecipeDto(
@@ -27,24 +41,8 @@ namespace Api.Services.Mappers
                 recipe.Image,
                 recipe.AuthorId,
                 recipe.Tags.ConvertAll(x => x.MapToTagDto()),
-                recipe.Likes.ConvertAll(x => x.MapToLikeDto()),
-                recipe.Favorites.ConvertAll(x => x.MapToFavoriteDto()),
-                recipe.Ingredients.ConvertAll(x => x.MapToIngredientDto()),
-                recipe.Steps.ConvertAll(x => x.MapToStepDto()));
-        }
-        public static RecipeShortDto MapToRecipeShortDto(this Recipe recipe)
-        {
-            return new RecipeShortDto(
-                recipe.Id,
-                recipe.Title,
-                recipe.Description,
-                recipe.CookingMinutes,
-                recipe.NumberOfServings,
-                recipe.Image,
-                recipe.AuthorId,
-                recipe.Tags.ConvertAll(x => x.MapToTagDto()),
-                recipe.Likes.ConvertAll(x => x.MapToLikeDto()),
-                recipe.Favorites.ConvertAll(x => x.MapToFavoriteDto()));
+                recipe.Likes.Count(),
+                recipe.Favorites.Count());
         }
     }
 }

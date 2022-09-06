@@ -17,39 +17,39 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("{recipeId}")]
-        public IActionResult GetRecipe(int recipeId)
+        public async Task<IActionResult> GetRecipe(int recipeId)
         {
-            return Ok(_recipeService.Get(recipeId));
+            return Ok(await _recipeService.Get(recipeId));
         }
 
         [HttpGet]
         [Route("list")]
-        public IActionResult GetRecipeList()
+        public async Task<IActionResult> GetRecipeList()
         {
-            return Ok(_recipeService.GetAll());
+            return Ok(await _recipeService.GetAll());
         }
 
         [HttpPost]
         [Route("create")]
-        public IActionResult CreateRecipes([FromBody]RecipeDto recipe)
+        public async Task<IActionResult> CreateRecipe([FromBody]RecipeEditDto recipe)
         {
-            _recipeService.Create(recipe);
+            await _recipeService.Create(recipe);
             return Ok();
         }
 
         [HttpDelete]
         [Route("{recipeId}")]
-        public IActionResult DeleteRecipes(int recipeId)
+        public async Task<IActionResult> DeleteRecipes(int recipeId)
         {
-            _recipeService.Delete(recipeId);
+            await _recipeService.Delete(recipeId);
             return Ok();
         }
 
         [HttpPut]
         [Route("update")]
-        public IActionResult UpdateRecipes([FromBody] RecipeDto recipe)
+        public async Task<IActionResult> UpdateRecipes([FromBody] RecipeEditDto recipe)
         {
-            _recipeService.Update(recipe);
+            await _recipeService.Update(recipe);
             return Ok();
         }
     }

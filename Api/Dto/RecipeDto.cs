@@ -8,11 +8,9 @@
         int NumberOfServings,
         string Image,
         int AuthorId,
-        List<TagDto> TagDtos,
-        List<LikeDto> LikeDtos,
-        List<FavoriteDto> FavoriteDtos,
-        List<IngredientDto> IngredientDtos,
-        List<StepDto> StepDtos)
+        List<TagDto> Tags,
+        int CountOfLikes,
+        int CountOfFavorites)
     {
     }
 }

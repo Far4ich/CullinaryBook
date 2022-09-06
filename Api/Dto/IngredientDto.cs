@@ -1,10 +1,18 @@
-﻿namespace Api.Dto
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Api.Dto
 {
     public record IngredientDto(
         int Id,
+        [Required]
+        [MaxLength(50)]
         string Title,
+        [Required]
         int OrderNumber,
-        string Products, 
+        [Required]
+        [MaxLength(511)]
+        string Products,
+        [Required]
         int RecipeId) 
     {
     }

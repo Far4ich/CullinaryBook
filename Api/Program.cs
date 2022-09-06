@@ -1,9 +1,5 @@
-using Api.Services;
-using Domain.RecipeEntity;
-using Domain.UoW;
-using Infrastructure.Data.RecipeModel;
 using Infrastructure.Services;
-using Infrastructure.UoW;
+using Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +11,7 @@ builder.Services.AddControllers();
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddEntityFramework(connectionString);
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
-builder.Services.AddScoped<IRecipeService, RecipeService>();
+builder.Services.AddApiServices();
 
 var app = builder.Build();
 

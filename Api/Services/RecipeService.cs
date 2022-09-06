@@ -10,23 +10,28 @@ namespace Api.Services
     {
         private readonly IRecipeRepository _recipeRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IRecipeBuilder _recipeBuilder;
 
-        public RecipeService(IRecipeRepository repository, IUnitOfWork unitOfWork)
+        public RecipeService(IRecipeRepository repository, IUnitOfWork unitOfWork, IRecipeBuilder recipeBuilder)
         {
             _recipeRepository = repository;
             _unitOfWork = unitOfWork;
+            _recipeBuilder = recipeBuilder;
         }
-        public async Task Create(RecipeDto recipeDto)
+        public async Task Create(RecipeEditDto recipeDto)
         {
             if (recipeDto == null)
             {
                 throw new Exception($"{nameof(Recipe)} not found");
             }
 
-            IRecipeBuilder recipeBuilder = new RecipeBuilder();
-            RecipeDirector recipeDirector = new(recipeBuilder);
-            recipeDirector.Construct(recipeDto);
-            Recipe recipeEntity = recipeBuilder.GetResult();
+            Recipe recipeEntity = _recipeBuilder
+                .BuildNewRecipe()
+                .BuildRecipeData(recipeDto)
+                .BuildIngredients(recipeDto)
+                .BuildSteps(recipeDto)
+                .BuildTags(recipeDto)
+                .GetResult();
 
             await _recipeRepository.Create(recipeEntity);
 
@@ -40,7 +45,7 @@ namespace Api.Services
             await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task<RecipeDto> Get(int recipeId)
+        public async Task<RecipeEditDto> Get(int recipeId)
         {
             Recipe recipe = await _recipeRepository.Get(recipeId);
             if (recipe == null)
@@ -48,13 +53,13 @@ namespace Api.Services
                 throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
             }
 
-            return recipe.MapToRecipeDto();
+            return recipe.MapToRecipeEditDto();
         }
 
-        public async Task<List<RecipeShortDto>> GetAll()
+        public async Task<List<RecipeDto>> GetAll()
         {
             List<Recipe> recipes = await _recipeRepository.GetAll();
-            return recipes.ConvertAll(x => x.MapToRecipeShortDto());
+            return recipes.ConvertAll(x => x.MapToRecipeDto());
         }
 
         public async Task<RecipeBestDto> GetBestRecipe()
@@ -62,7 +67,7 @@ namespace Api.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<RecipeShortDto>> GetByTag(int tagId)
+        public async Task<List<RecipeDto>> GetByTag(int tagId)
         {
             throw new NotImplementedException();
         }
@@ -87,17 +92,22 @@ namespace Api.Services
             await _recipeRepository.SetLike(recipeId, userId);
         }
 
-        public async Task Update(RecipeDto recipeDto)
+        public async Task Update(RecipeEditDto recipeDto)
         {
             if(recipeDto == null)
             {
-                throw new Exception($"{nameof(Recipe)} not found");
+                throw new Exception($"{nameof(RecipeEditDto)} not found");
             }
 
-            IRecipeBuilder recipeBuilder = new RecipeBuilder();
-            RecipeDirector recipeDirector = new(recipeBuilder);
-            recipeDirector.Construct(recipeDto);
-            Recipe recipeEntity = recipeBuilder.GetResult();
+            Recipe recipeEntity = await _recipeRepository.Get(recipeDto.Id);
+
+            recipeEntity = _recipeBuilder
+                .BuildRecipeForUpdate(recipeEntity)
+                .BuildRecipeData(recipeDto)
+                .BuildIngredients(recipeDto)
+                .BuildSteps(recipeDto)
+                .BuildTags(recipeDto)
+                .GetResult();
 
             _recipeRepository.Update(recipeEntity);
 

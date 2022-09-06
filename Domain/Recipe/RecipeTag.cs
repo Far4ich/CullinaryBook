@@ -2,6 +2,7 @@
 {
     public class RecipeTag
     {
+        public RecipeTag() { }
         public RecipeTag(
             int recipeId, 
             int tagId)

@@ -28,18 +28,26 @@ namespace Infrastructure.Data.RecipeModel
         {
             var recipe = await _dbContext.Recipe
                 .Where(recipe => recipe.Id == recipeId)
-                .Include(recipe=>recipe.Ingredients)
-                .Include(recipe=>recipe.Steps)
-                .Include(recipe=>recipe.Author)
-                .Include(x=>x.Likes)
-                .Include(recipe=>recipe.Favorites)
+                .Include(recipe => recipe.Tags)
+                .Include(recipe => recipe.RecipeTags)
+                .Include(recipe => recipe.Ingredients)
+                .Include(recipe => recipe.Steps)
+                .Include(recipe => recipe.Author)
+                .Include(recipe => recipe.Likes)
+                .Include(recipe => recipe.Favorites)
                 .FirstOrDefaultAsync();
             return recipe;
         }
 
         public async Task<List<Recipe>> GetAll()
         {
-            return await _dbContext.Recipe.ToListAsync();
+            return await _dbContext.Recipe
+                .Include(recipe => recipe.Tags)
+                .Include(recipe => recipe.RecipeTags)
+                .Include(recipe => recipe.Author)
+                .Include(recipe => recipe.Likes)
+                .Include(recipe => recipe.Favorites)
+                .ToListAsync();
         }
         //по макс лайкам
         public Recipe GetBestRecipe()
