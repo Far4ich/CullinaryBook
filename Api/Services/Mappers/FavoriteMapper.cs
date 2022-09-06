@@ -8,7 +8,6 @@ namespace Api.Services.Mappers
         public static FavoriteDto MapToFavoriteDto(this Favorite favorite)
         {
             return new FavoriteDto(
-                favorite.Id,
                 favorite.UserId,
                 favorite.RecipeId);
         }

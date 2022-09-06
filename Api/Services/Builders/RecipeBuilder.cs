@@ -22,6 +22,9 @@ namespace Api.Services.Builders
             _recipe.NumberOfServings = recipeDto.NumberOfServings;
             _recipe.Image = recipeDto.Image;
             _recipe.AuthorId = recipeDto.AuthorId;
+            BuildIngredients(recipeDto);
+            BuildSteps(recipeDto);
+            BuildTags(recipeDto);
             return this;
         }
         
@@ -31,21 +34,18 @@ namespace Api.Services.Builders
             return this;
         }
 
-        public RecipeBuilder BuildIngredients(RecipeEditDto recipeDto)
+        private void BuildIngredients(RecipeEditDto recipeDto)
         {
             _recipe.Ingredients = recipeDto.IngredientDtos.ConvertAll(x => x.MapToIngredient());
-            return this;
         }
-        public RecipeBuilder BuildSteps(RecipeEditDto recipeDto)
+        private void BuildSteps(RecipeEditDto recipeDto)
         {
             _recipe.Steps = recipeDto.StepDtos.ConvertAll(x => x.MapToStep());
-            return this;
         }
 
-        public RecipeBuilder BuildTags(RecipeEditDto recipeDto)
+        private void BuildTags(RecipeEditDto recipeDto)
         {
             _recipe.Tags = recipeDto.TagDtos.ConvertAll(x => x.MapToTag());
-            return this;
         }
 
         public Recipe GetResult()

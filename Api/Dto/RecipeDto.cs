@@ -10,7 +10,5 @@
         int AuthorId,
         List<TagDto> Tags,
         int CountOfLikes,
-        int CountOfFavorites)
-    {
-    }
+        int CountOfFavorites);
 }

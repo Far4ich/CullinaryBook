@@ -7,10 +7,7 @@ namespace Api.Services.Builders
     {
         RecipeBuilder BuildNewRecipe();
         RecipeBuilder BuildRecipeForUpdate(Recipe recipe);
-        RecipeBuilder BuildIngredients(RecipeEditDto recipeDto);
         RecipeBuilder BuildRecipeData(RecipeEditDto recipeDto);
-        RecipeBuilder BuildSteps(RecipeEditDto recipeDto);
-        RecipeBuilder BuildTags(RecipeEditDto recipeDto);
         Recipe GetResult();
     }
 }

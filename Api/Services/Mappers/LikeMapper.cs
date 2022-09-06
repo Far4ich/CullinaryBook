@@ -8,7 +8,6 @@ namespace Api.Services.Mappers
         public static LikeDto MapToLikeDto(this Like like)
         {
             return new LikeDto(
-                like.Id,
                 like.UserId,
                 like.RecipeId);
         }

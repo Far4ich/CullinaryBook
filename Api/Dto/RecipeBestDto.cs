@@ -6,7 +6,5 @@
         string Description,
         int CookingMinutes,
         string Image,
-        int CountOfLikes)
-    {
-    }
+        int CountOfLikes);
 }

@@ -10,7 +10,5 @@ namespace Api.Dto
         [MaxLength(511)]
         string Description,
         [Required]
-        int RecipeId)
-    {
-    }
+        int RecipeId);
 }

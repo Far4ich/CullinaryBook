@@ -21,7 +21,5 @@ namespace Api.Dto
         int AuthorId,
         List<TagDto> TagDtos,
         List<IngredientDto> IngredientDtos,
-        List<StepDto> StepDtos)
-    {
-    }
+        List<StepDto> StepDtos);
 }

@@ -8,7 +8,6 @@ namespace Api.Services.Mappers
         public static TagDto MapToTagDto(this Tag tag)
         {
             return new TagDto(
-                tag.Id,
                 tag.Title);
         }
 

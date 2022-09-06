@@ -32,9 +32,6 @@ namespace Infrastructure.Data.RecipeModel
                 .Include(recipe => recipe.RecipeTags)
                 .Include(recipe => recipe.Ingredients)
                 .Include(recipe => recipe.Steps)
-                .Include(recipe => recipe.Author)
-                .Include(recipe => recipe.Likes)
-                .Include(recipe => recipe.Favorites)
                 .FirstOrDefaultAsync();
             return recipe;
         }
@@ -44,7 +41,6 @@ namespace Infrastructure.Data.RecipeModel
             return await _dbContext.Recipe
                 .Include(recipe => recipe.Tags)
                 .Include(recipe => recipe.RecipeTags)
-                .Include(recipe => recipe.Author)
                 .Include(recipe => recipe.Likes)
                 .Include(recipe => recipe.Favorites)
                 .ToListAsync();

@@ -28,9 +28,6 @@ namespace Api.Services
             Recipe recipeEntity = _recipeBuilder
                 .BuildNewRecipe()
                 .BuildRecipeData(recipeDto)
-                .BuildIngredients(recipeDto)
-                .BuildSteps(recipeDto)
-                .BuildTags(recipeDto)
                 .GetResult();
 
             await _recipeRepository.Create(recipeEntity);
@@ -104,9 +101,6 @@ namespace Api.Services
             recipeEntity = _recipeBuilder
                 .BuildRecipeForUpdate(recipeEntity)
                 .BuildRecipeData(recipeDto)
-                .BuildIngredients(recipeDto)
-                .BuildSteps(recipeDto)
-                .BuildTags(recipeDto)
                 .GetResult();
 
             _recipeRepository.Update(recipeEntity);

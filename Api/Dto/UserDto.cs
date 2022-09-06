@@ -14,7 +14,5 @@ namespace Api.Dto
         [MaxLength(100)]
         string Password,
         [MaxLength(255)]
-        string AsboutMe)
-    {
-    }
+        string AsboutMe);
 }
