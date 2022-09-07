@@ -13,7 +13,7 @@ namespace Api.Services.Builders
             _recipe = new Recipe();
             return this;
         }
-        public RecipeBuilder BuildRecipeData(RecipeEditDto recipeDto)
+        public RecipeBuilder BuildRecipeData(RecipeEditDto recipeDto, List<Tag> tags)
         {
             _recipe.Id = recipeDto.Id;
             _recipe.Title = recipeDto.Title;
@@ -24,7 +24,7 @@ namespace Api.Services.Builders
             _recipe.AuthorId = recipeDto.AuthorId;
             BuildIngredients(recipeDto);
             BuildSteps(recipeDto);
-            BuildTags(recipeDto);
+            BuildTags(recipeDto, tags);
             return this;
         }
         
@@ -43,9 +43,21 @@ namespace Api.Services.Builders
             _recipe.Steps = recipeDto.StepDtos.ConvertAll(x => x.MapToStep());
         }
 
-        private void BuildTags(RecipeEditDto recipeDto)
+        private void BuildTags(RecipeEditDto recipeDto, List<Tag> tags)
         {
-            _recipe.Tags = recipeDto.TagDtos.ConvertAll(x => x.MapToTag());
+            _recipe.Tags = new();
+            foreach (TagDto tagDto in recipeDto.TagDtos)
+            {
+                Tag tagTmp = tags.Find(x => x.Title == tagDto.Title);
+                if (tagTmp != null)
+                {
+                    _recipe.Tags.Add(tagTmp);
+                }
+                else
+                {
+                    _recipe.Tags.Add(tagDto.MapToTag());
+                }
+            }
         }
 
         public Recipe GetResult()

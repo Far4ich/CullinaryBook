@@ -36,7 +36,7 @@ namespace Infrastructure.Data.RecipeModel
             return recipe;
         }
 
-        public async Task<List<Recipe>> GetAll()
+        public async Task<List<Recipe>> GetRecipeList()
         {
             return await _dbContext.Recipe
                 .Include(recipe => recipe.Tags)
@@ -44,6 +44,11 @@ namespace Infrastructure.Data.RecipeModel
                 .Include(recipe => recipe.Likes)
                 .Include(recipe => recipe.Favorites)
                 .ToListAsync();
+        }
+
+        public async Task<List<Tag>> GetAllTags()
+        {
+            return await _dbContext.Tag.ToListAsync();
         }
         //по макс лайкам
         public Recipe GetBestRecipe()

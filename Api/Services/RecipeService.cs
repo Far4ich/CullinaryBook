@@ -25,9 +25,11 @@ namespace Api.Services
                 throw new Exception($"{nameof(Recipe)} not found");
             }
 
+            List<Tag> tags = await _recipeRepository.GetAllTags();
+
             Recipe recipeEntity = _recipeBuilder
                 .BuildNewRecipe()
-                .BuildRecipeData(recipeDto)
+                .BuildRecipeData(recipeDto, tags)
                 .GetResult();
 
             await _recipeRepository.Create(recipeEntity);
@@ -55,7 +57,7 @@ namespace Api.Services
 
         public async Task<List<RecipeDto>> GetAll()
         {
-            List<Recipe> recipes = await _recipeRepository.GetAll();
+            List<Recipe> recipes = await _recipeRepository.GetRecipeList();
             return recipes.ConvertAll(x => x.MapToRecipeDto());
         }
 
@@ -96,11 +98,13 @@ namespace Api.Services
                 throw new Exception($"{nameof(RecipeEditDto)} not found");
             }
 
-            Recipe recipeEntity = await _recipeRepository.Get(recipeDto.Id);
+            Recipe recipeEntity = await _recipeRepository.Get(recipeDto.Id);//проверка на null
+
+            List<Tag> tags = await _recipeRepository.GetAllTags();
 
             recipeEntity = _recipeBuilder
                 .BuildRecipeForUpdate(recipeEntity)
-                .BuildRecipeData(recipeDto)
+                .BuildRecipeData(recipeDto, tags)
                 .GetResult();
 
             _recipeRepository.Update(recipeEntity);
