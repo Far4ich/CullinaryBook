@@ -1,5 +1,5 @@
 <div class="body">
-    <div class="go-back">
+    <div class="go-back" (click)="backClicked()">
         <img src="../../../../../assets/images/backspace.svg">
         <span class="go-back-text">Назад</span>
     </div>
@@ -10,18 +10,52 @@
             <button class="add-recipe-title-button">Опубликовать</button>
         </div>
         <div class="add-recipe-top">
-            <img class="add-recipe-top-img" src="{{inputImgPath}}">
+            <img class="add-recipe-top-img" src="../../../../../assets/images/img-input.svg">
             <div class="add-recipe-top-inputs">
-                <input class="add-recipe-top-inputs-title-field" placeholder="Название рецепта">
-                <textarea class="add-recipe-top-inputs-description-field" maxlength="150" placeholder="Краткое описание рецепта (150 символов)"></textarea>
-                <input class="add-recipe-top-inputs-tags-field" placeholder="Добавить теги">
+                <input class="add-recipe-top-inputs-title-field"
+                    [(ngModel)]="recipe.title" 
+                    maxlength="50" 
+                    placeholder="Название рецепта">
+
+                <textarea class="add-recipe-top-inputs-description-field" 
+                    [(ngModel)]="recipe.description"
+                    maxlength="150" 
+                    placeholder="Краткое описание рецепта (150 символов)"></textarea>
+
+                <div class="add-recipe-top-inputs-tags">
+                    <mat-chip-list #tagList>
+                        <mat-chip *ngFor="let tag of recipe.tagDtos" (removed)="removeTag(tag)">
+                            {{tag.title}}
+                            <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip>
+                        <input class="add-recipe-top-inputs-tags-field" 
+                                placeholder="Добавить теги"
+                                [matChipInputFor]="tagList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="true"
+                                (matChipInputTokenEnd)="addTag($event)">
+                    </mat-chip-list>
+                </div>
+                
                 <div class="add-recipe-top-inputs-minutes-persons">
                     <div>
-                        <input class="add-recipe-top-inputs-minutes-persons-field" placeholder="Время готовки">
+                        <select class="add-recipe-top-inputs-minutes-persons-select">
+                            <option [value]="null" hidden>Время готовки</option>
+                            <option *ngFor="let option of cookingMinutesOptions" [ngValue]="option.value">
+                                {{ option.viewValue }}
+                                </option>
+                        </select>
                         <span class="add-recipe-top-inputs-minutes-persons-text">Минут</span>
                     </div>
                     <div>
-                        <input class="add-recipe-top-inputs-minutes-persons-field" placeholder="Порций в блюде">
+                        <select class="add-recipe-top-inputs-minutes-persons-select">
+                            <option [value]="null" hidden>Порций в блюде</option>
+                            <option *ngFor="let option of numberOfServingsOptions" [ngValue]="option.value">
+                                {{ option.viewValue }}
+                                </option>
+                        </select>
                         <span class="add-recipe-top-inputs-minutes-persons-text">Персон</span>
                     </div>
                 </div>
@@ -30,11 +64,12 @@
         <div class="add-recipe-bottom">
             <div class="add-recipe-bottom-igredients">
                 <span class="add-recipe-bottom-igredients-title">Ингредиенты</span>
-
-                <button class="add-recipe-bottom-igredients-add">Добавить заголовок</button>>
+                <app-ingredient-item></app-ingredient-item>
+                <button class="add-recipe-bottom-add">Добавить заголовок</button>
             </div>
             <div class="add-recipe-bottom-steps">
-
+                <app-step-item [stepOrder]="1"></app-step-item>
+                <button class="add-recipe-bottom-add">Добавить шаг</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Tag } from "../../shared/tag";
+import { Tag } from "../../Shared/tag";
 
 @Component({
     templateUrl:'./main-page.component.html',
