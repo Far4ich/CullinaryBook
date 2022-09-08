@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Tag } from "../../shared/tag";
+import { Tag } from "../../Shared/tag";
 
 @Component({
     selector: 'tag-prewiew-cards-item',

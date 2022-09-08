@@ -56,6 +56,7 @@
     margin-top: 50px;
     background: #FFFFFF;
     box-shadow: 0px 16px 72px rgba(34, 39, 47, 0.05);
+    padding-right: 70px;
     border-radius: 72px 24px 24px 0px;
 }
 
@@ -86,6 +87,7 @@
 }
 
 .add-recipe-top-inputs-description-field{
+    resize: none;
     box-sizing: border-box;
     width: 647px;
     height: 117px;
@@ -101,11 +103,14 @@
     color: rgba(37, 41, 45, 0.5);
 }
 
+.add-recipe-top-inputs-tags{
+    margin-top: 20px;
+}
+
 .add-recipe-top-inputs-tags-field{
     box-sizing: border-box;
     width: 647px;
     height: 50px;
-    margin-top: 20px;
     padding: 11px 24px;
     border: 1px solid rgba(145, 150, 161, 0.4);
     border-radius: 16px;
@@ -123,7 +128,13 @@
     justify-content: space-between;
 }
 
-.add-recipe-top-inputs-minutes-persons-field{
+.add-recipe-top-inputs-minutes-persons-select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(../images/keyboard_arrow_down.svg);
+    background-repeat: no-repeat;
+    background-position: right center;
     box-sizing: border-box;
     width: 220px;
     height: 50px;
@@ -146,4 +157,50 @@
     font-size: 16px;
     line-height: 28px;
     color: #25292D;
+}
+
+.add-recipe-bottom{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-recipe-bottom-igredients{
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-recipe-bottom-igredients-title{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #4A525A;
+}
+
+.add-recipe-bottom-steps{
+    margin-left: 30px;
+    width: 790px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-recipe-bottom-add{
+    margin-top: 40px;
+    box-sizing: border-box;
+    width: 380px;
+    height: 60px;
+    background-color: #FFFFFF;
+    border: 1px solid #FDB100;
+    border-radius: 16px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FDB100;
 }
