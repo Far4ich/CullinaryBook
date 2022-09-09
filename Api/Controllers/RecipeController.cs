@@ -24,14 +24,14 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> GetRecipeList()
+        public async Task<IActionResult> GetRecipes()
         {
             return Ok(await _recipeService.GetAll());
         }
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> CreateRecipe([FromBody]RecipeEditDto recipe)
+        public async Task<IActionResult> CreateRecipe([FromBody] RecipeEditDto recipe)
         {
             await _recipeService.Create(recipe);
             return Ok();
@@ -39,7 +39,7 @@ namespace Api.Controllers
 
         [HttpDelete]
         [Route("{recipeId}")]
-        public async Task<IActionResult> DeleteRecipes(int recipeId)
+        public async Task<IActionResult> DeleteRecipe(int recipeId)
         {
             await _recipeService.Delete(recipeId);
             return Ok();
@@ -47,7 +47,7 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("update")]
-        public async Task<IActionResult> UpdateRecipes([FromBody] RecipeEditDto recipe)
+        public async Task<IActionResult> EditRecipe([FromBody] RecipeEditDto recipe)
         {
             await _recipeService.Update(recipe);
             return Ok();

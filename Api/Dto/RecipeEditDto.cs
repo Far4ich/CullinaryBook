@@ -19,7 +19,7 @@ namespace Api.Dto
         string Image,
         [Required]
         int AuthorId,
-        List<TagDto> TagDtos,
-        List<IngredientDto> IngredientDtos,
-        List<StepDto> StepDtos);
+        List<TagDto> Tags,
+        List<IngredientDto> Ingredients,
+        List<StepDto> Steps);
 }

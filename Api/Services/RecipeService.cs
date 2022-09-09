@@ -25,11 +25,11 @@ namespace Api.Services
                 throw new Exception($"{nameof(Recipe)} not found");
             }
 
-            List<Tag> tags = await _recipeRepository.GetAllTags();
+            List<Tag> tags = await _recipeRepository.GetTags();
 
             Recipe recipeEntity = _recipeBuilder
-                .BuildNewRecipe()
-                .BuildRecipeData(recipeDto, tags)
+                .Build()
+                .BuildRecipeData(recipeDto)
                 .GetResult();
 
             await _recipeRepository.Create(recipeEntity);
@@ -57,7 +57,7 @@ namespace Api.Services
 
         public async Task<List<RecipeDto>> GetAll()
         {
-            List<Recipe> recipes = await _recipeRepository.GetRecipeList();
+            List<Recipe> recipes = await _recipeRepository.GetRecipes();
             return recipes.ConvertAll(x => x.MapToRecipeDto());
         }
 
@@ -73,22 +73,22 @@ namespace Api.Services
 
         public async Task RemoveFavorite(int recipeId, int userId)
         {
-            throw new NotImplementedException();
+            await _recipeRepository.RemoveFavorite(new Favorite(userId, recipeId));
         }
 
         public async Task RemoveLike(int recipeId, int userId)
         {
-            await _recipeRepository.RemoveLike(recipeId, userId);
+            await _recipeRepository.RemoveLike(new Like(userId, recipeId));
         }
 
         public async Task SetFavorite(int recipeId, int userId)
         {
-            await _recipeRepository.SetFavorite(recipeId, userId);
+            await _recipeRepository.SetFavorite(new Favorite(userId, recipeId));
         }
 
         public async Task SetLike(int recipeId, int userId)
         {
-            await _recipeRepository.SetLike(recipeId, userId);
+            await _recipeRepository.SetLike(new Like(userId, recipeId));
         }
 
         public async Task Update(RecipeEditDto recipeDto)
@@ -100,11 +100,11 @@ namespace Api.Services
 
             Recipe recipeEntity = await _recipeRepository.Get(recipeDto.Id);//проверка на null
 
-            List<Tag> tags = await _recipeRepository.GetAllTags();
+            List<Tag> tags = await _recipeRepository.GetTags();
 
             recipeEntity = _recipeBuilder
-                .BuildRecipeForUpdate(recipeEntity)
-                .BuildRecipeData(recipeDto, tags)
+                .Build(recipeEntity)
+                .BuildRecipeData(recipeDto)
                 .GetResult();
 
             _recipeRepository.Update(recipeEntity);

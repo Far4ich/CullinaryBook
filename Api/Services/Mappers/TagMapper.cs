@@ -7,14 +7,12 @@ namespace Api.Services.Mappers
     {
         public static TagDto MapToTagDto(this Tag tag)
         {
-            return new TagDto(
-                tag.Title);
+            return new TagDto(tag.Title);
         }
 
         public static Tag MapToTag(this TagDto tag)
         {
-            return new Tag(
-                tag.Title);
+            return new Tag(tag.Title);
         }
     }
 }

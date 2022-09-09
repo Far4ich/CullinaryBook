@@ -1,4 +1,5 @@
 ﻿using Domain.RecipeEntity;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.RecipeModel
@@ -6,7 +7,6 @@ namespace Infrastructure.Data.RecipeModel
     public class RecipeRepository : IRecipeRepository
     {
         private readonly CullinaryBookContext _dbContext;
-
         public RecipeRepository(CullinaryBookContext dbContext)
         {
             _dbContext = dbContext;
@@ -17,26 +17,17 @@ namespace Infrastructure.Data.RecipeModel
             await _dbContext.Recipe.AddAsync(recipe);
         }
 
-        //перекинуть в сервис добавить проверку на null
         public async Task Delete(int recipeId)
         {
-            Recipe recipe = await Get(recipeId);
-            _dbContext.Recipe.Remove(recipe);
+            await _dbContext.Recipe.RemoveRecipe(recipeId);
         }
 
         public async Task<Recipe> Get(int recipeId)
         {
-            var recipe = await _dbContext.Recipe
-                .Where(recipe => recipe.Id == recipeId)
-                .Include(recipe => recipe.Tags)
-                .Include(recipe => recipe.RecipeTags)
-                .Include(recipe => recipe.Ingredients)
-                .Include(recipe => recipe.Steps)
-                .FirstOrDefaultAsync();
-            return recipe;
+            return await _dbContext.Recipe.GetRecipe(recipeId);
         }
 
-        public async Task<List<Recipe>> GetRecipeList()
+        public async Task<List<Recipe>> GetRecipes()
         {
             return await _dbContext.Recipe
                 .Include(recipe => recipe.Tags)
@@ -46,7 +37,7 @@ namespace Infrastructure.Data.RecipeModel
                 .ToListAsync();
         }
 
-        public async Task<List<Tag>> GetAllTags()
+        public async Task<List<Tag>> GetTags()
         {
             return await _dbContext.Tag.ToListAsync();
         }
@@ -61,30 +52,24 @@ namespace Infrastructure.Data.RecipeModel
             throw new NotImplementedException();
         }
 
-        //перекинуть в сервис, добавить проверку на null
-        public async Task RemoveFavorite(int recipeId, int userId)
+        public async Task RemoveFavorite(Favorite favorite)
         {
-            var favorite = await _dbContext.Favorite
-                .SingleOrDefaultAsync(favorite => favorite.RecipeId == recipeId && favorite.UserId == userId);
-            _dbContext.Favorite.Remove(favorite);
+            await _dbContext.Favorite.RemoveFavorite(favorite);
         }
 
-        //перекинуть в сервис, добавить проверку на null
-        public async Task RemoveLike(int recipeId, int userId)
+        public async Task RemoveLike(Like like)
         {
-            var like = await _dbContext.Like
-                .SingleOrDefaultAsync(like => like.RecipeId == recipeId && like.UserId == userId);
-            _dbContext.Like.Remove(like);
+            await _dbContext.Like.RemoveLike(like);
         }
 
-        public async Task SetFavorite(int recipeId, int userId)
+        public async Task SetFavorite(Favorite favorite)
         {
-            await _dbContext.Favorite.AddAsync(new Favorite(userId, recipeId));
+            await _dbContext.Favorite.AddAsync(favorite);
         }
 
-        public async Task SetLike(int recipeId, int userId)
+        public async Task SetLike(Like like)
         {
-            await _dbContext.Like.AddAsync(new Like(userId, recipeId));
+            await _dbContext.Like.AddAsync(like);
         }
 
         public void Update(Recipe recipe)
