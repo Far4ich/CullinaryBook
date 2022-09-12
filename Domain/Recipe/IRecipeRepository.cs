@@ -9,10 +9,12 @@
         Task<List<Tag>> GetTags();
         Task Create(Recipe recipe);
         void Update(Recipe recipe);
-        Task Delete(int recipeId);
+        void Delete(Recipe recipe);
+        Task<Like> GetLike(int recipeId, int userId);
         Task SetLike(Like like);
-        Task RemoveLike(Like like);
+        void RemoveLike(Like like);
+        Task<Favorite> GetFavorite(int recipeId, int userId);
         Task SetFavorite(Favorite favorite);
-        Task RemoveFavorite(Favorite favorite);
+        void RemoveFavorite(Favorite favorite);
     }
 }

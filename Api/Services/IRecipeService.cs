@@ -9,8 +9,9 @@ namespace Api.Services
         Task<RecipeEditDto> Get(int recipeId);
         Task<List<RecipeDto>> GetByTag(int tagId);
         Task<RecipeBestDto> GetBestRecipe();
-        Task Create(RecipeEditDto recipe);
-        Task Update(RecipeEditDto recipe);
+        Task Save(RecipeEditDto recipe);
+        //Task Create(RecipeEditDto recipe);
+        //Task Update(RecipeEditDto recipe);
         Task Delete(int recipeId);
         Task SetLike(int recipeId, int userId);
         Task RemoveLike(int recipeId, int userId);

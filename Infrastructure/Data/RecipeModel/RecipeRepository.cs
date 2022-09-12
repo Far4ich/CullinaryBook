@@ -1,5 +1,4 @@
 ﻿using Domain.RecipeEntity;
-using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.RecipeModel
@@ -17,14 +16,20 @@ namespace Infrastructure.Data.RecipeModel
             await _dbContext.Recipe.AddAsync(recipe);
         }
 
-        public async Task Delete(int recipeId)
+        public void Delete(Recipe recipe)
         {
-            await _dbContext.Recipe.RemoveRecipe(recipeId);
+            _dbContext.Recipe.Remove(recipe);
         }
 
         public async Task<Recipe> Get(int recipeId)
         {
-            return await _dbContext.Recipe.GetRecipe(recipeId);
+            return await _dbContext.Recipe
+                .Where(recipe => recipe.Id == recipeId)
+                .Include(recipe => recipe.Tags)
+                .Include(recipe => recipe.RecipeTags)
+                .Include(recipe => recipe.Ingredients)
+                .Include(recipe => recipe.Steps)
+                .FirstOrDefaultAsync(); ;
         }
 
         public async Task<List<Recipe>> GetRecipes()
@@ -51,15 +56,25 @@ namespace Infrastructure.Data.RecipeModel
         {
             throw new NotImplementedException();
         }
-
-        public async Task RemoveFavorite(Favorite favorite)
+        public async Task<Favorite> GetFavorite(int recipeId, int userId)
         {
-            await _dbContext.Favorite.RemoveFavorite(favorite);
+            return await _dbContext.Favorite.SingleOrDefaultAsync(
+                x => x.RecipeId == recipeId && x.UserId == userId);
         }
 
-        public async Task RemoveLike(Like like)
+        public async Task<Like> GetLike(int recipeId, int userId)
         {
-            await _dbContext.Like.RemoveLike(like);
+            return await _dbContext.Like.SingleOrDefaultAsync(
+                x => x.RecipeId == recipeId && x.UserId == userId);
+        }
+        public void RemoveFavorite(Favorite favorite)
+        {
+            _dbContext.Favorite.Remove(favorite);
+        }
+
+        public void RemoveLike(Like like)
+        {
+            _dbContext.Like.Remove(like);
         }
 
         public async Task SetFavorite(Favorite favorite)

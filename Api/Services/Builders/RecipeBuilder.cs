@@ -14,20 +14,16 @@ namespace Api.Services.Builders
             _recipeRepository = recipeRepository;
         }
 
-        public RecipeBuilder Build()
+        public async Task<RecipeBuilder> BuildAll(RecipeEditDto recipeDto)
         {
-            _recipe = new Recipe();
-            return this;
-        }
+            _recipe = recipeDto.Id == 0
+                ? new Recipe()
+                : await _recipeRepository.Get(recipeDto.Id);
 
-        public RecipeBuilder Build(Recipe recipe)
-        {
-            _recipe = recipe;
-            return this;
-        }
-
-        public RecipeBuilder BuildRecipeData(RecipeEditDto recipeDto)
-        {
+            if (_recipe == null)
+            {
+                throw new Exception($"{nameof(RecipeEditDto)} not found, #Id - {recipeDto.Id}");
+            }
             _recipe.Id = recipeDto.Id;
             _recipe.Title = recipeDto.Title;
             _recipe.Description = recipeDto.Description;
@@ -37,7 +33,11 @@ namespace Api.Services.Builders
             _recipe.AuthorId = recipeDto.AuthorId;
             BuildIngredients(recipeDto);
             BuildSteps(recipeDto);
-            BuildTags(recipeDto);
+            Console.WriteLine("before tags");
+            Dictionary<string, Tag> tags = (await _recipeRepository.GetTags()).ToDictionary(t => t.Title);
+            Console.WriteLine("tags");
+            BuildTags(recipeDto, tags);
+
             return this;
         }
 
@@ -50,20 +50,20 @@ namespace Api.Services.Builders
             _recipe.Steps = recipeDto.Steps.ConvertAll(x => x.MapToStep());
         }
 
-        private async void BuildTags(RecipeEditDto recipeDto)
+        private void BuildTags(RecipeEditDto recipeDto, Dictionary<string, Tag> tags)
         {
-            List<Tag> tags = await _recipeRepository.GetTags();
             _recipe.Tags = new();
 
             foreach (TagDto tagDto in recipeDto.Tags)
             {
-                Tag tagTmp = tags.Find(x => x.Title == tagDto.Title);
-                if (tagTmp != null)
+                if (tags.TryGetValue(tagDto.Title, out Tag tag))
                 {
-                    _recipe.Tags.Add(tagTmp);
+                    Console.WriteLine("Find " + tag.Title + $" id - {tag.Id}");
+                    _recipe.Tags.Add(tag);
                 }
                 else
                 {
+                    Console.WriteLine("not Find " + tagDto.Title);
                     _recipe.Tags.Add(tagDto.MapToTag());
                 }
             }

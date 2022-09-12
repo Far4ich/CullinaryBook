@@ -33,7 +33,7 @@ namespace Api.Controllers
         [Route("create")]
         public async Task<IActionResult> CreateRecipe([FromBody] RecipeEditDto recipe)
         {
-            await _recipeService.Create(recipe);
+            await _recipeService.Save(recipe);
             return Ok();
         }
 
@@ -49,7 +49,7 @@ namespace Api.Controllers
         [Route("update")]
         public async Task<IActionResult> EditRecipe([FromBody] RecipeEditDto recipe)
         {
-            await _recipeService.Update(recipe);
+            await _recipeService.Save(recipe);
             return Ok();
         }
     }

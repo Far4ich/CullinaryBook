@@ -18,28 +18,33 @@ namespace Api.Services
             _unitOfWork = unitOfWork;
             _recipeBuilder = recipeBuilder;
         }
-        public async Task Create(RecipeEditDto recipeDto)
-        {
-            if (recipeDto == null)
-            {
-                throw new Exception($"{nameof(Recipe)} not found");
-            }
+        //public async Task Create(RecipeEditDto recipeDto)
+        //{
+        //    if (recipeDto == null)
+        //    {
+        //        throw new Exception($"{nameof(RecipeEditDto)} not found");
+        //    }
 
-            List<Tag> tags = await _recipeRepository.GetTags();
+        //    List<Tag> tags = await _recipeRepository.GetTags();
 
-            Recipe recipeEntity = _recipeBuilder
-                .Build()
-                .BuildRecipeData(recipeDto)
-                .GetResult();
+        //    Recipe recipeEntity = _recipeBuilder
+        //        .Build()
+        //        .BuildRecipeData(recipeDto)
+        //        .GetResult();
 
-            await _recipeRepository.Create(recipeEntity);
+        //    await _recipeRepository.Create(recipeEntity);
 
-            await _unitOfWork.SaveEntitiesAsync();
-        }
+        //    await _unitOfWork.SaveEntitiesAsync();
+        //}
 
         public async Task Delete(int recipeId)
         {
-            await _recipeRepository.Delete(recipeId);
+            Recipe recipe = await _recipeRepository.Get(recipeId);
+            if (recipe == null)
+            {
+                throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
+            }
+            _recipeRepository.Delete(recipe);
 
             await _unitOfWork.SaveEntitiesAsync();
         }
@@ -49,7 +54,7 @@ namespace Api.Services
             Recipe recipe = await _recipeRepository.Get(recipeId);
             if (recipe == null)
             {
-                throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
+                throw new Exception($"{nameof(RecipeEditDto)} not found, #Id - {recipeId}");
             }
 
             return recipe.MapToRecipeEditDto();
@@ -73,12 +78,22 @@ namespace Api.Services
 
         public async Task RemoveFavorite(int recipeId, int userId)
         {
-            await _recipeRepository.RemoveFavorite(new Favorite(userId, recipeId));
+            Favorite favorite = await _recipeRepository.GetFavorite(recipeId, userId);
+            if (favorite == null)
+            {
+                throw new Exception($"{nameof(Favorite)} not found, #RecipeId - {recipeId} #UserId - {userId}");
+            }
+            _recipeRepository.RemoveFavorite(favorite);
         }
 
         public async Task RemoveLike(int recipeId, int userId)
         {
-            await _recipeRepository.RemoveLike(new Like(userId, recipeId));
+            Like like = await _recipeRepository.GetLike(recipeId, userId);
+            if (like == null)
+            {
+                throw new Exception($"{nameof(Like)} not found, #RecipeId - {recipeId} #UserId - {userId}");
+            }
+            _recipeRepository.RemoveLike(like);
         }
 
         public async Task SetFavorite(int recipeId, int userId)
@@ -91,25 +106,39 @@ namespace Api.Services
             await _recipeRepository.SetLike(new Like(userId, recipeId));
         }
 
-        public async Task Update(RecipeEditDto recipeDto)
+        public async Task Save(RecipeEditDto recipeDto)
         {
-            if(recipeDto == null)
+            if (recipeDto == null)
             {
                 throw new Exception($"{nameof(RecipeEditDto)} not found");
             }
 
-            Recipe recipeEntity = await _recipeRepository.Get(recipeDto.Id);//проверка на null
+            Recipe recipe = (await _recipeBuilder.BuildAll(recipeDto)).GetResult();
 
-            List<Tag> tags = await _recipeRepository.GetTags();
-
-            recipeEntity = _recipeBuilder
-                .Build(recipeEntity)
-                .BuildRecipeData(recipeDto)
-                .GetResult();
-
-            _recipeRepository.Update(recipeEntity);
+            if(recipe.Id == 0)
+            {
+                await _recipeRepository.Create(recipe);
+            }
 
             await _unitOfWork.SaveEntitiesAsync();
         }
+
+        //public async Task Update(RecipeEditDto recipeDto)
+        //{
+        //    
+
+        //    Recipe recipeEntity = await _recipeRepository.Get(recipeDto.Id);//проверка на null
+
+        //    List<Tag> tags = await _recipeRepository.GetTags();
+
+        //    recipeEntity = _recipeBuilder
+        //        .Build(recipeEntity)
+        //        .BuildRecipeData(recipeDto)
+        //        .GetResult();
+
+        //    _recipeRepository.Update(recipeEntity);
+
+        //    await _unitOfWork.SaveEntitiesAsync();
+        //}
     }
 }

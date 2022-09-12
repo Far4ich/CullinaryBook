@@ -5,9 +5,7 @@ namespace Api.Services.Builders
 {
     public interface IRecipeBuilder
     {
-        RecipeBuilder Build();
-        RecipeBuilder Build(Recipe recipe);
-        RecipeBuilder BuildRecipeData(RecipeEditDto recipeDto);
+        Task<RecipeBuilder> BuildAll(RecipeEditDto recipeDto);
         Recipe GetResult();
     }
 }
