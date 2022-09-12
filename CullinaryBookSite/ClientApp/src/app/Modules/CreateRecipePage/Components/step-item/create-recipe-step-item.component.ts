@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { StepDto } from "src/app/Dtos/stepDto";
 
 @Component({
     selector: 'app-step-item',
@@ -6,6 +7,14 @@ import { Component, Input } from "@angular/core";
     styleUrls: ['../../../../../assets/styles/create-recipe-step-item.css']
 })
 
-export class CreateRecipeStepItemComponent{
-    @Input() public stepOrder!: number;
+export class CreateRecipeStepItemComponent implements OnInit {
+    @Input() public step!: StepDto;
+    @Output() public delete = new EventEmitter<StepDto>();
+
+    deleteClicked(): void
+    {
+        this.delete.emit(this.step);
+    }
+
+    ngOnInit(): void {}
 }
