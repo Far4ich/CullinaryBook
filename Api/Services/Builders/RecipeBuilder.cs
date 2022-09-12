@@ -22,7 +22,7 @@ namespace Api.Services.Builders
 
             if (_recipe == null)
             {
-                throw new Exception($"{nameof(RecipeEditDto)} not found, #Id - {recipeDto.Id}");
+                throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeDto.Id}");
             }
             _recipe.Id = recipeDto.Id;
             _recipe.Title = recipeDto.Title;
@@ -33,9 +33,7 @@ namespace Api.Services.Builders
             _recipe.AuthorId = recipeDto.AuthorId;
             BuildIngredients(recipeDto);
             BuildSteps(recipeDto);
-            Console.WriteLine("before tags");
             Dictionary<string, Tag> tags = (await _recipeRepository.GetTags()).ToDictionary(t => t.Title);
-            Console.WriteLine("tags");
             BuildTags(recipeDto, tags);
 
             return this;
@@ -58,12 +56,10 @@ namespace Api.Services.Builders
             {
                 if (tags.TryGetValue(tagDto.Title, out Tag tag))
                 {
-                    Console.WriteLine("Find " + tag.Title + $" id - {tag.Id}");
                     _recipe.Tags.Add(tag);
                 }
                 else
                 {
-                    Console.WriteLine("not Find " + tagDto.Title);
                     _recipe.Tags.Add(tagDto.MapToTag());
                 }
             }
