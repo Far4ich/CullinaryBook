@@ -29,7 +29,7 @@ namespace Infrastructure.Data.RecipeModel
                 .Include(recipe => recipe.RecipeTags)
                 .Include(recipe => recipe.Ingredients)
                 .Include(recipe => recipe.Steps)
-                .FirstOrDefaultAsync(); ;
+                .FirstOrDefaultAsync();
         }
 
         public async Task<List<Recipe>> GetRecipes()
