@@ -1,7 +1,9 @@
 <div class="step">
     <div class="step-title">
-        <span class="step-title-order">Шаг {{stepOrder}}</span>
-        <img class="step-title-delete" src="../../../../../assets/images/close.svg">
+        <span class="step-title-order">Шаг {{step.orderNumber}}</span>
+        <div class="step-title-delete" (click)="deleteClicked()">
+            <img src="../../../../../assets/images/close.svg">
+        </div>
     </div>
-    <textarea class="step-description-textarea" placeholder="Описание шага" maxlength="511"></textarea>
+    <textarea class="step-description-textarea" [(ngModel)]="step.description" placeholder="Описание шага" maxlength="511"></textarea>
 </div>

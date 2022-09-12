@@ -1,6 +1,8 @@
+import { IngredientDto } from "./ingredientDto";
+import { StepDto } from "./stepDto";
 import { TagDto } from "./tagDto";
 
-export interface RecipeDto{
+export interface RecipeEditDto{
     id?: number;
     title: string;
     description: string;
@@ -9,6 +11,6 @@ export interface RecipeDto{
     image: string;
     authorId: number;
     tags: TagDto[];
-    countOfLikes: number;
-    countOfFavorites: number;
+    ingredients: IngredientDto[];
+    steps: StepDto[];
 }
