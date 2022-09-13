@@ -3,11 +3,9 @@
     public class Like
     {
         public Like(
-            int id,
             int userId,
             int recipeId)
         {
-            Id = id;
             UserId = userId;
             RecipeId = recipeId;
         }

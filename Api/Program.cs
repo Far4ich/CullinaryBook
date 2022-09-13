@@ -1,4 +1,5 @@
 using Infrastructure.Services;
+using Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,9 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 
-string connectionString = builder.Configuration.GetValue<string>("DefaultConnection");
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddEntityFramework(connectionString);
+builder.Services.AddApiServices();
 
 var app = builder.Build();
 

@@ -21,6 +21,16 @@ namespace Infrastructure.Data.UserModel
             throw new NotImplementedException();
         }
 
+        public List<Favorite> GetFavorites(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Like> GetLikes(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(User user)
         {
             throw new NotImplementedException();
