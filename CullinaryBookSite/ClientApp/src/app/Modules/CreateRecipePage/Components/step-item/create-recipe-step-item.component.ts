@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
-import { StepDto } from "src/app/Dtos/stepDto";
+import { StepDto } from "src/app/Dto/stepDto";
 
 @Component({
     selector: 'app-step-item',

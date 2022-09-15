@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Location } from '@angular/common';
-import { RecipeEditDto } from "src/app/Dtos/recipeEditDto";
+import { RecipeEditDto } from "src/app/Dto/recipeEditDto";
 import { MatChipInputEvent } from '@angular/material/chips'
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { TagDto } from "src/app/Dtos/tagDto";
+import { TagDto } from "src/app/Dto/tagDto";
 import { OptionNumber } from "../../Shared/option-number";
-import { IngredientDto } from "src/app/Dtos/ingredientDto";
-import { StepDto } from "src/app/Dtos/stepDto";
+import { IngredientDto } from "src/app/Dto/ingredientDto";
+import { StepDto } from "src/app/Dto/stepDto";
 import { RecipeService } from "src/app/Services/recipe.service";
 
 @Component({
@@ -18,7 +18,8 @@ import { RecipeService } from "src/app/Services/recipe.service";
 export class CreateRecipePageComponent implements OnInit{
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-    constructor(private _location: Location) {}
+    constructor(private _location: Location,
+        private _recipeService: RecipeService) {}
 
         
     ngOnInit(): void {}
@@ -135,5 +136,10 @@ export class CreateRecipePageComponent implements OnInit{
                 this.recipe.steps[i].orderNumber--;
             }
         }
+    }
+
+    publicClicked(): void
+    {
+        this._recipeService.addRecipe(this.recipe)
     }
 }

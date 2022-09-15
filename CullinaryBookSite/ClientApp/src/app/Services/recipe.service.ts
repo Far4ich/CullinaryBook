@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { RecipeEditDto } from "../Dtos/recipeEditDto";
+import { RecipeEditDto } from "../Dto/recipeEditDto";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { RecipeDto } from "../Dtos/recipeDto";
-import { RecipeBestDto } from "../Dtos/recipeBestDto";
+import { RecipeDto } from "../Dto/recipeDto";
+import { RecipeBestDto } from "../Dto/recipeBestDto";
 
 @Injectable()
 export class RecipeService {
