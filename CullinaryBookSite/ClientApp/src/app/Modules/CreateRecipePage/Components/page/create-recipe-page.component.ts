@@ -139,7 +139,7 @@ export class CreateRecipePageComponent implements OnInit{
     }
 
     publicClicked(): void
-    {
-        this._recipeService.addRecipe(this.recipe)
+    {  
+        this._recipeService.addRecipe(this.recipe).subscribe(()=>{console.log("RecipeCreate")});
     }
 }

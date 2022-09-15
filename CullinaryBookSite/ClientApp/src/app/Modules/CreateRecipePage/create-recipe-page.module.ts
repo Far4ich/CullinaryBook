@@ -14,6 +14,7 @@ import { CreateRecipePageComponent } from './Components/page/create-recipe-page.
 import { CreateRecipePageRoutingModule } from './create-recipe-page-routing.module';
 import { CreateRecipeIngredientItemComponent } from './Components/ingredient-item/create-recipe-ingredient-item.component';
 import { CreateRecipeStepItemComponent } from './Components/step-item/create-recipe-step-item.component';
+import { RecipeService } from 'src/app/Services/recipe.service';
 
 @NgModule({
     imports: [
@@ -32,6 +33,9 @@ import { CreateRecipeStepItemComponent } from './Components/step-item/create-rec
         CreateRecipePageComponent,
         CreateRecipeIngredientItemComponent,
         CreateRecipeStepItemComponent
+    ],
+    providers: [
+        RecipeService
     ]
 })
 export class CreateRecipePageModule {}
