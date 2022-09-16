@@ -1,0 +1,164 @@
+.recipe{
+    margin-top: 40px;
+    padding-right: 30px;
+    width: 1170px;
+    height: 430px;
+    border-radius: 72px 24px 24px 0;
+    background: #FFFFFF;
+    box-shadow: 0px 16px 72px rgba(34, 39, 47, 0.05);
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipe-img{
+    width: 430px;
+    height: 430px;
+    border-radius: 72px 0px;
+}
+
+.recipe-content{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-content-tags-like_favorite{
+    width: 691px;
+    margin-top: 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipe-content-tags{
+    margin-top: 13px;
+    display: flex;
+}
+
+.tag-box{
+    width: 90px;
+    height: 25px;
+    background: #ffd470;;
+    opacity: 0.6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.tag-box-text{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    color: #F29E1F;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.recipe-content-like_favorite{
+    display: flex;
+}
+
+.recipe-content-like_favorite-button{
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 107px;
+    height: 50px;
+    border: 1px solid #FDB100;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FDB100;
+}
+
+.recipe-content-like_favorite-button-text{
+    margin-left: 10px;
+}
+
+.recipe-content-title{
+    margin-top: 35px;
+    margin-left: 3px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    text-transform: capitalize;
+    color: #25292D;
+}
+
+.recipe-content-description{
+    margin-top: 16px;
+    margin-left: 3px;
+    width: 571px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #4A525A;
+}
+
+.recipe-content-minutes_persons{
+    display: flex;
+    margin-top: 45px;
+    margin-left: 3px;
+}
+
+.recipe-content-minutes{
+    display: flex;
+}
+
+.recipe-content-persons{
+    margin-left: 70px;
+    display: flex;
+}
+
+.recipe-content-minutes-img{
+    margin-right: 5px;
+    width: 64px;
+    height: 64px;
+}
+
+.recipe-content-persons-img{
+    margin-right: 10px;
+    width: 64px;
+    height: 64px;
+}
+
+.recipe-content-minutes_persons-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-content-minutes_persons-text-title{
+    margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #25292D;
+    opacity: 0.5;
+}
+
+.recipe-content-minutes_persons-text-value{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #25292D;
+}

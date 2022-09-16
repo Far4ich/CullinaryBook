@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateRecipePageComponent } from './Components/page/create-recipe-page.component';
+import { RecipesPageComponent } from './Components/page/recipes-page.component';
 
 const routes: Routes = [
   {
-    path:"recipes/create",
-    component: CreateRecipePageComponent
+    path: "recipes",
+    component: RecipesPageComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class CreateRecipePageRoutingModule { }
+export class RecipesPageRoutingModule { }

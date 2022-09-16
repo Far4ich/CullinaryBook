@@ -1,0 +1,46 @@
+<div class="recipe">
+    <img class="recipe-img" src={{recipe.image}}>
+    <div class="recipe-content">
+        <div class="recipe-content-tags-like_favorite">
+            <div class="recipe-content-tags">
+                <div class="tag-box" *ngFor="let tag of recipe.tags">
+                    <span class="tag-box-text">{{tag.title}}</span>
+                </div>
+            </div>
+            <div class="recipe-content-like_favorite">
+                <button class="recipe-content-like_favorite-button">
+                    <img src="../../../../../assets/images/star.svg" *ngIf="favorited">
+                    <img src="../../../../../assets/images/star-border.svg" *ngIf="!favorited">
+                    <span class="recipe-content-like_favorite-button-text">{{recipe.countOfFavorites}}</span>
+                </button>
+                <button class="recipe-content-like_favorite-button">
+                    <img src="../../../../../assets/images/heart.svg" *ngIf="liked">
+                    <img src="../../../../../assets/images/heart-border.svg" *ngIf="!liked">
+                    <span class="recipe-content-like_favorite-button-text">{{recipe.countOfLikes}}</span>
+                </button>
+            </div>
+        </div>
+        <span class="recipe-content-title">
+            {{recipe.title}}
+        </span>
+        <span class="recipe-content-description">
+            {{recipe.description}}
+        </span>
+        <div class="recipe-content-minutes_persons">
+            <div class="recipe-content-minutes">
+                <img class="recipe-content-minutes-img" src="../../../../../assets/images/timer.svg">
+                <div class="recipe-content-minutes_persons-text">
+                    <span class="recipe-content-minutes_persons-text-title">Время приготовления:</span>
+                    <span class="recipe-content-minutes_persons-text-value">{{recipe.cookingMinutes}} мин</span>
+                </div>
+            </div>
+            <div class="recipe-content-persons">
+                <img class="recipe-content-persons-img" src="../../../../../assets/images/people_outline.svg">
+                <div class="recipe-content-minutes_persons-text">
+                    <span class="recipe-content-minutes_persons-text-title">Рецепт на:</span>
+                    <span class="recipe-content-minutes_persons-text-value">{{recipe.numberOfServings}} персон</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+.mat-card{
+    padding: 0;
+    margin: 0;
+}
+
+.card{
+    width: 278px;
+    height: 164px;
+    background: #FFFFFF;
+    box-shadow: 0px 16px 72px rgba(34, 39, 47, 0.05);
+    border-radius: 24px;
+}
+
+.card-content{
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content-img-box{
+    width: 50px;
+    height: 50px;
+    background: #FFEFCC;
+    border-radius: 12px;
+}
+.card-content-img{
+    margin: 13px 14px;
+}
+
+.card-content-title{
+    height: 30px;
+    margin-top: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: #25292D;
+}

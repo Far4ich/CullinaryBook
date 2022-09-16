@@ -153,3 +153,7 @@
     font-feature-settings: 'case' on;
     color: #4A525A;
 }
+
+.recipe-search-form{
+    margin-top: 64px;
+}

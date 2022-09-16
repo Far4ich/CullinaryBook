@@ -8,8 +8,10 @@ import { AppComponent } from './Components/page/app.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 
-import { MainPageModule } from '../Modules/MainPage/main-page.module';
 import { CreateRecipePageModule } from '../Modules/CreateRecipePage/create-recipe-page.module';
+import { RecipesPageModule } from '../Modules/RecipesPage/recipes-page.module';
+import { MainPageModule } from '../Modules/MainPage/main-page.module';
+
 
 @NgModule({
   declarations: [
@@ -19,12 +21,13 @@ import { CreateRecipePageModule } from '../Modules/CreateRecipePage/create-recip
   ],
   imports: [
     BrowserModule,
-    MainPageModule,
     CreateRecipePageModule,
+    MainPageModule,
+    RecipesPageModule,
     HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
