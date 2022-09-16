@@ -3,13 +3,11 @@
     public class User
     {
         public User(
-            int id,
             string name,
             string login,
             string password,
             string aboutMe)
         {
-            Id = id;
             Name = name;
             Login = login;
             Password = password;

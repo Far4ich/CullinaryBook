@@ -2,16 +2,19 @@
 {
     public interface IRecipeRepository
     {
-        List<Recipe> GetAll();
-        Recipe Get(int recipeId);
+        Task<List<Recipe>> GetRecipes();
+        Task<Recipe> Get(int recipeId);
         List<Recipe> GetByTag(int tagId);
         Recipe GetBestRecipe();
-        void Create(Recipe recipe);
+        Task<List<Tag>> GetTags();
+        Task Create(Recipe recipe);
         void Update(Recipe recipe);
-        void Delete(int recipeId);
-        void SetLike(int recipeId, int userId);
-        void RemoveLike(int recipeId, int userId);
-        void SetFavorite(int recipeId, int userId);
-        void RemoveFavorite(int recipeId, int userId);
+        void Delete(Recipe recipe);
+        Task<Like> GetLike(int recipeId, int userId);
+        Task SetLike(Like like);
+        void RemoveLike(Like like);
+        Task<Favorite> GetFavorite(int recipeId, int userId);
+        Task SetFavorite(Favorite favorite);
+        void RemoveFavorite(Favorite favorite);
     }
 }

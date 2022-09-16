@@ -3,11 +3,9 @@
     public class Favorite
     {
         public Favorite(
-            int id,
             int userId,
             int recipeId)
         {
-            Id = id;
             UserId = userId;
             RecipeId = recipeId;
         }

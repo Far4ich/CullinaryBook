@@ -1,10 +1,12 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
-import { IngredientDto } from "src/app/Dtos/ingredientDto";
+import { IngredientDto } from "src/app/Dto/ingredientDto";
+import { RecipeService } from "src/app/Services/recipe.service";
 
 @Component({
     selector: 'app-ingredient-item',
     templateUrl:'./create-recipe-ingredient-item.component.html',
-    styleUrls: ['../../../../../assets/styles/create-recipe-ingredient-item.css']
+    styleUrls: ['../../../../../assets/styles/create-recipe-ingredient-item.css'],
+    providers: [RecipeService]
 })
 
 export class CreateRecipeIngredientItemComponent implements OnInit {

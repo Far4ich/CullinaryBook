@@ -3,13 +3,11 @@
     public class Ingredient
     {
         public Ingredient(
-            int id, 
             string title,
             int orderNumber, 
             string products,
             int recipeId)
         {
-            Id = id;
             Title = title;
 	        OrderNumber = orderNumber;
             Products = products;
