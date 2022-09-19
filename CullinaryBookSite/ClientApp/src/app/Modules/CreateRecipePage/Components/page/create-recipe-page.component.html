@@ -3,13 +3,13 @@
         <img src="../../../../../assets/images/backspace.svg">
         <span class="go-back-text">Назад</span>
     </div>
-
     <div class="add-recipe">
         <div class="add-recipe-title">
             <span class="add-recipe-title-text">Добавить новый рецепт</span>
             <button class="add-recipe-title-button" (click)="publicClicked()">Опубликовать</button>
         </div>
         <div class="add-recipe-top">
+            
             <img class="add-recipe-top-img" src="../../../../../assets/images/img-input.svg">
             <div class="add-recipe-top-inputs">
                 <input class="add-recipe-top-inputs-title-field"
@@ -41,8 +41,8 @@
                 
                 <div class="add-recipe-top-inputs-minutes-persons">
                     <div>
-                        <select class="add-recipe-top-inputs-minutes-persons-select">
-                            <option [value]="null" hidden>Время готовки</option>
+                        <select [(ngModel)]="recipe.cookingMinutes" class="add-recipe-top-inputs-minutes-persons-select">
+                            <option [value]="0" hidden>Время готовки</option>
                             <option *ngFor="let option of cookingMinutesOptions" [ngValue]="option.value">
                                 {{ option.viewValue }}
                                 </option>
@@ -50,8 +50,8 @@
                         <span class="add-recipe-top-inputs-minutes-persons-text">Минут</span>
                     </div>
                     <div>
-                        <select class="add-recipe-top-inputs-minutes-persons-select">
-                            <option [value]="null" hidden>Порций в блюде</option>
+                        <select [(ngModel)]="recipe.numberOfServings" class="add-recipe-top-inputs-minutes-persons-select">
+                            <option [value]="0" hidden>Порций в блюде</option>
                             <option *ngFor="let option of numberOfServingsOptions" [ngValue]="option.value">
                                 {{ option.viewValue }}
                                 </option>

@@ -30,6 +30,7 @@ import { TagsPreviewCardsItemComponent } from './Components/tags-prewiew-cards/t
         MainPageComponent,
         RecipeSearchComponent,
         TagsPreviewCardsItemComponent
-    ]
+    ],
+    exports: [TagsPreviewCardsItemComponent]
 })
 export class MainPageModule {}

@@ -32,6 +32,21 @@
     border: none;
 }
 
+.title-button:hover{
+    cursor: pointer;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FDB100;
+    width: 278px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #FDB100;
+}
+
 .tag-cards{
     margin-top: 50px;
     display:flex;
@@ -84,4 +99,22 @@
     line-height: 22px;
     text-align: center;
     color: #FDB100;
+}
+
+.recipes-download-more:hover{
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-top: 65px;
+    width: 309px;
+    height: 60px;
+    border: none;
+    border-radius: 16px;
+    background-color: #FDB100;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
 }

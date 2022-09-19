@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { RecipeDto } from "src/app/Dto/recipeDto";
+import { RecipeService } from "src/app/Services/recipe.service";
 import { Tag } from "../../Shared/tag";
 
 @Component({
@@ -8,27 +9,11 @@ import { Tag } from "../../Shared/tag";
 })
 
 export class RecipesPageComponent{
-    public tags: Tag[] = [
-        {
-            title: "Простые блюда",
-            picture: "../../../../assets/images/ic-menu.svg"
-        },
-        {
-            title: "Детское",
-            picture: "../../../../assets/images/ic-cook.svg"
-        },
-        {
-            title: "От шеф-поваров",
-            picture: "../../../../assets/images/ic-chef.svg"
-        },
-        {
-            title: "На праздник",
-            picture: "../../../../assets/images/holiday.svg"
-        }
-    ];
 
-    public recipes: RecipeDto[] = 
-    [
+    public recipes!: RecipeDto[];
+    /*  Пока закоментил может понадобится для тестов
+        !!Удаление - не забыть удалить картинку из ассетов
+    = [
         {
             title: "Клубничная панна-котта",
             description: "Десерт, который невероятно легко и быстро готовится. Советую подавать его порционно в красивых бокалах, украсив взбитыми сливками, свежими ягодами и мятой.",
@@ -49,6 +34,37 @@ export class RecipesPageComponent{
             ],
             countOfLikes: 8,
             countOfFavorites: 10
+        }
+    ];*/
+
+    constructor(private recipeService: RecipeService)
+    {
+        this.getRecipes();
+    }
+
+    public getRecipes(): void
+    {
+        this.recipeService.getRecipes().subscribe(recipes => {
+            this.recipes = recipes;
+        })
+    }
+    
+    public tags: Tag[] = [
+        {
+            title: "Простые блюда",
+            picture: "../../../../assets/images/ic-menu.svg"
+        },
+        {
+            title: "Детское",
+            picture: "../../../../assets/images/ic-cook.svg"
+        },
+        {
+            title: "От шеф-поваров",
+            picture: "../../../../assets/images/ic-chef.svg"
+        },
+        {
+            title: "На праздник",
+            picture: "../../../../assets/images/holiday.svg"
         }
     ];
 }

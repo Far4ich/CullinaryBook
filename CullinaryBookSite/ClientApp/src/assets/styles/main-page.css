@@ -64,6 +64,21 @@
     color: #FFFFFF;
 }
 
+.slogan-buttons-add-recipe:hover{
+    cursor: pointer;
+    width: 278px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #FDB100;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FDB100;
+}
+
 .slogan-buttons-login{
     box-sizing: border-box;
     width: 216px;
@@ -79,6 +94,24 @@
     line-height: 28px;
     text-align: center;
     color: #FDB100;
+}
+
+.slogan-buttons-login:hover{
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 216px;
+    height: 60px;
+    border: none;
+    border-radius: 16px;
+    background-color: #FDB100;
+    margin-left: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 .tags-preview{

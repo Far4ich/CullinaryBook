@@ -52,7 +52,7 @@ export class CreateRecipePageComponent implements OnInit{
         cookingMinutes: 0,
         numberOfServings: 0,
         image: "",
-        authorId: 5,
+        authorId: 1,
         tags: [],
         ingredients: [
             {

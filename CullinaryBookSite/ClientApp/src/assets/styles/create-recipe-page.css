@@ -6,6 +6,7 @@
 .go-back{
     margin-top: 48px;
     display: flex;
+    cursor: pointer;
 }
 
 .go-back-text{
@@ -49,6 +50,21 @@
     background: #FDB100;
     border-radius: 16px;
     border: none;
+}
+
+.add-recipe-title-button:hover{
+    cursor: pointer;
+    width: 278px;
+    height: 60px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FDB100;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #FDB100;
 }
 
 .add-recipe-top{
@@ -132,6 +148,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    cursor: pointer;
     background-image: url(../images/keyboard_arrow_down.svg);
     background-repeat: no-repeat;
     background-position: right center;
@@ -203,4 +220,21 @@
     font-size: 18px;
     line-height: 28px;
     color: #FDB100;
+}
+
+.add-recipe-bottom-add:hover{
+    cursor: pointer;
+    margin-top: 40px;
+    box-sizing: border-box;
+    width: 380px;
+    height: 60px;
+    background-color: #FDB100;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FFFFFF;
 }

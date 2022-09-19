@@ -27,6 +27,7 @@
 .step-title-delete{
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 
 .step-description-textarea{
