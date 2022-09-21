@@ -62,6 +62,7 @@
 }
 
 .recipe-content-like_favorite-button{
+    cursor: pointer;
     margin-left: 15px;
     display: flex;
     justify-content: center;

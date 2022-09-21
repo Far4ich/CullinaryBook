@@ -77,19 +77,14 @@ namespace Infrastructure.Data.RecipeModel
             _dbContext.Like.Remove(like);
         }
 
-        public async Task SetFavorite(Favorite favorite)
+        public async Task AddFavorite(Favorite favorite)
         {
             await _dbContext.Favorite.AddAsync(favorite);
         }
 
-        public async Task SetLike(Like like)
+        public async Task AddLike(Like like)
         {
             await _dbContext.Like.AddAsync(like);
-        }
-
-        public void Update(Recipe recipe)
-        {
-            _dbContext.Recipe.Update(recipe);
         }
     }
 }

@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
+import { FavoriteDto } from "src/app/Dto/favoriteDto";
+import { LikeDto } from "src/app/Dto/likeDto";
 import { RecipeDto } from "src/app/Dto/recipeDto";
 import { RecipeService } from "src/app/Services/recipe.service";
+import { UserService } from "src/app/Services/user.service";
 import { Tag } from "../../Shared/tag";
 
 @Component({
@@ -9,46 +12,13 @@ import { Tag } from "../../Shared/tag";
 })
 
 export class RecipesPageComponent{
+    public RecipesDownloadCount = 2;
+    public userId: number = 1;
 
-    public recipes!: RecipeDto[];
-    /*  Пока закоментил может понадобится для тестов
-        !!Удаление - не забыть удалить картинку из ассетов
-    = [
-        {
-            title: "Клубничная панна-котта",
-            description: "Десерт, который невероятно легко и быстро готовится. Советую подавать его порционно в красивых бокалах, украсив взбитыми сливками, свежими ягодами и мятой.",
-            cookingMinutes: 35,
-            numberOfServings: 5,
-            image: "../../../../../assets/images/test-recipe-img.png",
-            authorId: 1,
-            tags: [
-                {
-                    title: "десерты"
-                },
-                {
-                    title: "клубника"
-                },
-                {
-                    title: "сливки"
-                }
-            ],
-            countOfLikes: 8,
-            countOfFavorites: 10
-        }
-    ];*/
-
-    constructor(private recipeService: RecipeService)
-    {
-        this.getRecipes();
-    }
-
-    public getRecipes(): void
-    {
-        this.recipeService.getRecipes().subscribe(recipes => {
-            this.recipes = recipes;
-        })
-    }
-    
+    public recipes: RecipeDto[] = [];
+    public visibleRecipes: RecipeDto[] = [];
+    public likes: LikeDto[] = [];
+    public favorites: FavoriteDto[] = [];
     public tags: Tag[] = [
         {
             title: "Простые блюда",
@@ -67,4 +37,103 @@ export class RecipesPageComponent{
             picture: "../../../../assets/images/holiday.svg"
         }
     ];
+
+    constructor(private recipeService: RecipeService,
+        private userService: UserService)
+    {
+        this.refreshRecipes();
+        this.refreshLikes();
+        this.refreshFavorites();
+    }
+
+    public refreshRecipes(): void
+    {
+        this.recipeService.getRecipes().subscribe(recipes => {
+            this.recipes = recipes;
+            this.AddVisibleRecipes();
+        })
+        
+    }
+
+    public AddVisibleRecipes(): void
+    {
+        this.recipes.splice(0, this.RecipesDownloadCount).forEach(r => this.visibleRecipes.push(r));
+    }
+
+    public refreshLikes(): void
+    {
+        this.userService.getLikes(this.userId).subscribe(likes => {
+            this.likes = likes;
+        })
+    }
+
+    public refreshFavorites(): void
+    {
+        this.userService.getFavorites(this.userId).subscribe(favorites => {
+            this.favorites = favorites;
+        })
+    }
+    
+    public likeClicked(recipe: RecipeDto): void
+    {
+        let like: LikeDto | undefined;
+        like = this.likes.find(x => x.recipeId == recipe.id!)
+        if (like != undefined)
+        {
+            this.recipes[this.recipes.indexOf(recipe)].countOfLikes--;
+            this.likes.splice(this.likes.indexOf(like), 1);
+            this.recipeService.removeLike(like).subscribe();
+        }
+        else
+        {
+            like = {recipeId: recipe.id!, userId: this.userId}
+            this.recipes[this.recipes.indexOf(recipe)].countOfLikes++;
+            this.likes.push(like);
+            this.recipeService.addLike(like).subscribe();
+        }
+        
+    }
+
+    public favoriteClicked(recipe: RecipeDto): void
+    {
+        let favorite: FavoriteDto | undefined;
+        favorite = this.favorites.find(x => x.recipeId == recipe.id!)
+        if (favorite != undefined)
+        {
+            this.recipes[this.recipes.indexOf(recipe)].countOfFavorites--;
+            this.favorites.splice(this.favorites.indexOf(favorite), 1);
+            this.recipeService.removeFavorite(favorite).subscribe();
+        }
+        else
+        {
+            favorite = {recipeId: recipe.id!, userId: this.userId}
+            this.recipes[this.recipes.indexOf(recipe)].countOfFavorites++;
+            this.favorites.push(favorite);
+            this.recipeService.addFavorite(favorite).subscribe();
+        }
+    }
+
+    public isLiked(recipeId: number | undefined): boolean
+    {
+        if (recipeId != undefined)
+        {
+            if (this.likes.find(x => x.recipeId == recipeId) != undefined)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public isFavorited(recipeId: number | undefined): boolean
+    {
+        if (recipeId != undefined)
+        {
+            if (this.favorites.find(x => x.recipeId == recipeId) != undefined)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

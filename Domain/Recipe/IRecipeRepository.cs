@@ -8,13 +8,12 @@
         Recipe GetBestRecipe();
         Task<List<Tag>> GetTags();
         Task Create(Recipe recipe);
-        void Update(Recipe recipe);
         void Delete(Recipe recipe);
         Task<Like> GetLike(int recipeId, int userId);
-        Task SetLike(Like like);
+        Task AddLike(Like like);
         void RemoveLike(Like like);
         Task<Favorite> GetFavorite(int recipeId, int userId);
-        Task SetFavorite(Favorite favorite);
+        Task AddFavorite(Favorite favorite);
         void RemoveFavorite(Favorite favorite);
     }
 }

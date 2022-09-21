@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { RecipeDto } from "src/app/Dto/recipeDto";
 
 @Component({
@@ -7,8 +7,26 @@ import { RecipeDto } from "src/app/Dto/recipeDto";
     styleUrls: ['../../../../../assets/styles/recipe-item.css']
 })
 
-export class RecipeItemComponent { 
+export class RecipeItemComponent implements OnInit{
+    
     @Input() public recipe!: RecipeDto;
-    @Input() public liked: boolean = false;
-    @Input() public favorited: boolean = false;
+    @Input() public liked!: boolean;
+    @Input() public favorited!: boolean;
+
+    @Output() public like = new EventEmitter<RecipeDto>();
+    @Output() public favorite = new EventEmitter<RecipeDto>();
+
+    likeClicked(): void
+    {
+        this.liked = !this.liked;
+        this.like.emit(this.recipe);
+    }
+
+    favoriteClicked(): void
+    {
+        this.favorited = !this.favorited;
+        this.favorite.emit(this.recipe);
+    }
+
+    ngOnInit(): void {} 
 }

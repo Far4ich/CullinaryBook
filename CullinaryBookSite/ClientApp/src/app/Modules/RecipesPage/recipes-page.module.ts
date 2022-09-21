@@ -13,6 +13,7 @@ import { RecipesPageComponent } from './Components/page/recipes-page.component';
 import { TagCardsComponent } from './Components/tag-cards/tag-cards.component';
 import { RecipeSearchComponent } from './Components/recipe-search/recipe-search.component';
 import { RecipeItemComponent } from './Components/recipe-item/recipe-item.component';
+import { UserService } from 'src/app/Services/user.service';
 
 @NgModule({
     imports: [
@@ -30,6 +31,9 @@ import { RecipeItemComponent } from './Components/recipe-item/recipe-item.compon
         TagCardsComponent,
         RecipeSearchComponent,
         RecipeItemComponent
+    ],
+    providers: [
+        UserService
     ]
 })
 export class RecipesPageModule {}

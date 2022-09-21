@@ -45,6 +45,7 @@ namespace Api.Services
         public async Task<List<RecipeDto>> GetAll()
         {
             List<Recipe> recipes = await _recipeRepository.GetRecipes();
+
             return recipes.ConvertAll(x => x.MapToRecipeDto());
         }
 
@@ -58,34 +59,42 @@ namespace Api.Services
             throw new NotImplementedException();
         }
 
-        public async Task RemoveFavorite(int recipeId, int userId)
+        public async Task RemoveFavorite(FavoriteDto favoriteDto)
         {
-            Favorite favorite = await _recipeRepository.GetFavorite(recipeId, userId);
+            Favorite favorite = await _recipeRepository.GetFavorite(favoriteDto.RecipeId, favoriteDto.UserId);
             if (favorite == null)
             {
-                throw new Exception($"{nameof(Favorite)} not found, #RecipeId - {recipeId} #UserId - {userId}");
+                throw new Exception($"{nameof(Favorite)} not found, #RecipeId - {favoriteDto.RecipeId} #UserId - {favoriteDto.RecipeId}");
             }
             _recipeRepository.RemoveFavorite(favorite);
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task RemoveLike(int recipeId, int userId)
+        public async Task RemoveLike(LikeDto likeDto)
         {
-            Like like = await _recipeRepository.GetLike(recipeId, userId);
+            Like like = await _recipeRepository.GetLike(likeDto.RecipeId, likeDto.UserId);
             if (like == null)
             {
-                throw new Exception($"{nameof(Like)} not found, #RecipeId - {recipeId} #UserId - {userId}");
+                throw new Exception($"{nameof(Like)} not found, #RecipeId - {likeDto.RecipeId} #UserId - {likeDto.UserId}");
             }
             _recipeRepository.RemoveLike(like);
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task SetFavorite(int recipeId, int userId)
+        public async Task AddFavorite(FavoriteDto favoriteDto)
         {
-            await _recipeRepository.SetFavorite(new Favorite(userId, recipeId));
+            await _recipeRepository.AddFavorite(favoriteDto.MapToFavorite());
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task SetLike(int recipeId, int userId)
+        public async Task AddLike(LikeDto likeDto)
         {
-            await _recipeRepository.SetLike(new Like(userId, recipeId));
+            await _recipeRepository.AddLike(likeDto.MapToLike());
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
         public async Task Save(RecipeEditDto recipeDto)

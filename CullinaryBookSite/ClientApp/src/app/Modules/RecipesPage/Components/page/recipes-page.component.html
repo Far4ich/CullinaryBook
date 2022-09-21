@@ -17,7 +17,13 @@
     </div>
 
     <div class="recipes">
-        <recipe-item *ngFor="let recipe of recipes" [recipe]="recipe"></recipe-item>
-        <button class="recipes-download-more">Загрузить еще</button>
+        <recipe-item *ngFor="let recipe of visibleRecipes" 
+            [recipe]="recipe" 
+            [liked]="isLiked(recipe.id)" 
+            [favorited]="isFavorited(recipe.id)"
+            (like)="likeClicked($event)"
+            (favorite)="favoriteClicked($event)">
+        </recipe-item>
+        <button (click)="AddVisibleRecipes()" class="recipes-download-more">Загрузить еще</button>
     </div>
 </div>

@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { RecipeDto } from "../Dto/recipeDto";
 import { RecipeBestDto } from "../Dto/recipeBestDto";
+import { LikeDto } from "../Dto/likeDto";
+import { FavoriteDto } from "../Dto/favoriteDto";
 
 @Injectable()
 export class RecipeService {
@@ -33,7 +35,19 @@ export class RecipeService {
         return this.httpClient.get<RecipeDto[]>(`${this.apiUrl}/list`);
     }
 
-    public getBestRecipe(): Observable<RecipeBestDto> {
-        return this.httpClient.get<RecipeBestDto>(`${this.apiUrl}/best-recipe`);
+    public addLike(likeDto: LikeDto): Observable<null>{
+        return this.httpClient.post<null>(`${this.apiUrl}/add-like`, likeDto);
+    }
+
+    public addFavorite(favoriteDto: FavoriteDto): Observable<null>{
+        return this.httpClient.post<null>(`${this.apiUrl}/add-favorite`, favoriteDto);
+    }
+
+    public removeLike(likeDto: LikeDto): Observable<object> {
+        return this.httpClient.delete(`${this.apiUrl}/remove-like`, {body: likeDto});
+    }
+
+    public removeFavorite(favoriteDto: FavoriteDto): Observable<object> {
+        return this.httpClient.delete(`${this.apiUrl}/remove-favorite`, {body: favoriteDto});
     }
 }
