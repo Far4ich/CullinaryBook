@@ -20,8 +20,7 @@ export class CreateRecipePageComponent implements OnInit{
 
     constructor(private _location: Location,
         private _recipeService: RecipeService) {}
-
-        
+ 
     ngOnInit(): void {}
 
     backClicked() {
@@ -138,7 +137,7 @@ export class CreateRecipePageComponent implements OnInit{
         }
     }
 
-    publicClicked(): void
+    createRecipe(): void
     {  
         this._recipeService.addRecipe(this.recipe).subscribe(()=>{console.log("RecipeCreate")});
     }

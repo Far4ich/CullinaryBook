@@ -6,18 +6,18 @@ import { FavoriteDto } from "../Dto/favoriteDto";
 
 @Injectable()
 export class UserService {
-    private readonly apiUrl: string = 'http://localhost:4200/api/user';
+    private readonly apiUrl: string = '/api/user';
 
     constructor(private httpClient: HttpClient) {
     }
 
     public getLikes(userId: number) : Observable<LikeDto[]>
     {
-        return this.httpClient.get<LikeDto[]>(`${this.apiUrl}/get-likes/${userId}`);
+        return this.httpClient.get<LikeDto[]>(`${this.apiUrl}/${userId}/likes`);
     }
 
     public getFavorites(userId: number) : Observable<FavoriteDto[]>
     {
-        return this.httpClient.get<FavoriteDto[]>(`${this.apiUrl}/get-favorites/${userId}`);
+        return this.httpClient.get<FavoriteDto[]>(`${this.apiUrl}/${userId}/favorites`);
     }
 }

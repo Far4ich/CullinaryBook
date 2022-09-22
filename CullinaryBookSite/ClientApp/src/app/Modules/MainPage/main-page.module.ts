@@ -11,26 +11,28 @@ import { MatInputModule } from "@angular/material/input";
 import { DayRecipeComponent } from './Components/day-recipe/day-recipe.component';
 import { MainPageComponent } from './Components/page/main-page.component';
 import { RecipeSearchComponent } from './Components/recipe-search/recipe-search.component';
-import { MainPageRoutingModule } from './main-page-routing.module';
 import { TagsPreviewCardsItemComponent } from './Components/tags-prewiew-cards/tags-preview-cards-item.component';
+import { RecipeSearchTagComponent } from './Components/recipe-search-tag/recipe-search-tag.component';
+import { AppRoutingModule } from 'src/app/Core/app-routing.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        MainPageRoutingModule,
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
         MatButtonModule,
         MatListModule,
-        MatIconModule
+        MatIconModule,
+        AppRoutingModule
     ],
     declarations: [
         DayRecipeComponent,
         MainPageComponent,
         RecipeSearchComponent,
-        TagsPreviewCardsItemComponent
+        TagsPreviewCardsItemComponent,
+        RecipeSearchTagComponent
     ],
-    exports: [TagsPreviewCardsItemComponent]
+    exports: [RecipeSearchComponent]
 })
 export class MainPageModule {}

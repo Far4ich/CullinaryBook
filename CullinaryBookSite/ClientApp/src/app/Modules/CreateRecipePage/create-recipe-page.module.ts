@@ -11,7 +11,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 import { CreateRecipePageComponent } from './Components/page/create-recipe-page.component';
-import { CreateRecipePageRoutingModule } from './create-recipe-page-routing.module';
 import { CreateRecipeIngredientItemComponent } from './Components/ingredient-item/create-recipe-ingredient-item.component';
 import { CreateRecipeStepItemComponent } from './Components/step-item/create-recipe-step-item.component';
 import { RecipeService } from 'src/app/Services/recipe.service';
@@ -19,7 +18,6 @@ import { RecipeService } from 'src/app/Services/recipe.service';
 @NgModule({
     imports: [
         CommonModule,
-        CreateRecipePageRoutingModule,
         MatChipsModule,
         FormsModule,
         MatFormFieldModule,

@@ -3,13 +3,12 @@ import { RecipeEditDto } from "../Dto/recipeEditDto";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { RecipeDto } from "../Dto/recipeDto";
-import { RecipeBestDto } from "../Dto/recipeBestDto";
 import { LikeDto } from "../Dto/likeDto";
 import { FavoriteDto } from "../Dto/favoriteDto";
 
 @Injectable()
 export class RecipeService {
-    private readonly apiUrl: string = 'http://localhost:4200/api/recipe';
+    private readonly apiUrl: string = '/api/recipe';
 
     constructor(private httpClient: HttpClient) {
     }

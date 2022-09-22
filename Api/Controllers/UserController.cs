@@ -16,14 +16,14 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [Route("get-likes/{userId}")]
+        [Route("{userId}/likes")]
         public async Task<IActionResult> GetLikes(int userId)
         {
             return Ok(await _userService.GetLikes(userId));
         }
 
         [HttpGet]
-        [Route("get-favorites/{userId}")]
+        [Route("{userId}/favorites")]
         public async Task<IActionResult> GetFavorites(int userId)
         {
             return Ok(await _userService.GetFavorites(userId));

@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FavoriteDto } from "src/app/Dto/favoriteDto";
 import { LikeDto } from "src/app/Dto/likeDto";
 import { RecipeDto } from "src/app/Dto/recipeDto";
+import { SearchTag } from "src/app/Modules/MainPage/Shared/recipe-search-tag";
 import { RecipeService } from "src/app/Services/recipe.service";
 import { UserService } from "src/app/Services/user.service";
 import { Tag } from "../../Shared/tag";
@@ -11,7 +12,7 @@ import { Tag } from "../../Shared/tag";
     styleUrls: ['../../../../../assets/styles/recipes-page.css']
 })
 
-export class RecipesPageComponent{
+export class RecipesPageComponent implements OnInit{
     public RecipesDownloadCount = 2;
     public userId: number = 1;
 
@@ -37,10 +38,32 @@ export class RecipesPageComponent{
             picture: "../../../../assets/images/holiday.svg"
         }
     ];
+    public searchTags: SearchTag[] = [
+        {
+            title: "Мясо"
+        },
+        {
+            title: "Деликатесы"
+        },
+        {
+            title: "Пироги"
+        },
+        {
+            title: "Рыба"
+        },
+        {
+            title: "пост"
+        },
+        {
+            title: "пасха2021"
+        }
+    ]
 
     constructor(private recipeService: RecipeService,
         private userService: UserService)
-    {
+    {}
+    
+    ngOnInit(): void {
         this.refreshRecipes();
         this.refreshLikes();
         this.refreshFavorites();
@@ -77,7 +100,7 @@ export class RecipesPageComponent{
     public likeClicked(recipe: RecipeDto): void
     {
         let like: LikeDto | undefined;
-        like = this.likes.find(x => x.recipeId == recipe.id!)
+        like = this.likes.find(x => x.recipeId == recipe.id)
         if (like != undefined)
         {
             this.recipes[this.recipes.indexOf(recipe)].countOfLikes--;
@@ -86,18 +109,17 @@ export class RecipesPageComponent{
         }
         else
         {
-            like = {recipeId: recipe.id!, userId: this.userId}
+            like = {recipeId: recipe.id, userId: this.userId}
             this.recipes[this.recipes.indexOf(recipe)].countOfLikes++;
             this.likes.push(like);
             this.recipeService.addLike(like).subscribe();
         }
-        
     }
 
     public favoriteClicked(recipe: RecipeDto): void
     {
         let favorite: FavoriteDto | undefined;
-        favorite = this.favorites.find(x => x.recipeId == recipe.id!)
+        favorite = this.favorites.find(x => x.recipeId == recipe.id)
         if (favorite != undefined)
         {
             this.recipes[this.recipes.indexOf(recipe)].countOfFavorites--;
@@ -106,7 +128,7 @@ export class RecipesPageComponent{
         }
         else
         {
-            favorite = {recipeId: recipe.id!, userId: this.userId}
+            favorite = {recipeId: recipe.id, userId: this.userId}
             this.recipes[this.recipes.indexOf(recipe)].countOfFavorites++;
             this.favorites.push(favorite);
             this.recipeService.addFavorite(favorite).subscribe();

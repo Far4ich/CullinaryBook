@@ -27,7 +27,7 @@ namespace Api.Services
         {
             List<Favorite> favorites = await _userRepository.GetFavorites(userId);
 
-            return favorites.ConvertAll(l => l.MapToFavoriteDto());
+            return favorites.ConvertAll(f => f.MapToFavoriteDto());
         }
     }
 }

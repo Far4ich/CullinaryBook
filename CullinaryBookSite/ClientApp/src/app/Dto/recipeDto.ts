@@ -1,7 +1,7 @@
 import { TagDto } from "./tagDto";
 
 export interface RecipeDto{
-    id?: number;
+    id: number;
     title: string;
     description: string;
     cookingMinutes: number;

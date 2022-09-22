@@ -4,7 +4,6 @@
         <a routerLink="/recipes/create">
             <button class="title-button">+ Добавить рецепт</button>
         </a>
-        
     </div>
     
     <div class="tag-cards">
@@ -13,7 +12,7 @@
 
     <div class="search">
         <span class="search-title">Поиск рецепта</span>
-        <app-recipe-search></app-recipe-search>
+        <app-recipe-search [prewiewTags] = "searchTags"></app-recipe-search>
     </div>
 
     <div class="recipes">
