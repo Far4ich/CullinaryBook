@@ -103,14 +103,14 @@ export class RecipesPageComponent implements OnInit{
         like = this.likes.find(x => x.recipeId == recipe.id)
         if (like != undefined)
         {
-            this.recipes[this.recipes.indexOf(recipe)].countOfLikes--;
+            this.visibleRecipes[this.visibleRecipes.indexOf(recipe)].countOfLikes--;
             this.likes.splice(this.likes.indexOf(like), 1);
             this.recipeService.removeLike(like).subscribe();
         }
         else
         {
             like = {recipeId: recipe.id, userId: this.userId}
-            this.recipes[this.recipes.indexOf(recipe)].countOfLikes++;
+            this.visibleRecipes[this.visibleRecipes.indexOf(recipe)].countOfLikes++;
             this.likes.push(like);
             this.recipeService.addLike(like).subscribe();
         }
@@ -122,14 +122,14 @@ export class RecipesPageComponent implements OnInit{
         favorite = this.favorites.find(x => x.recipeId == recipe.id)
         if (favorite != undefined)
         {
-            this.recipes[this.recipes.indexOf(recipe)].countOfFavorites--;
+            this.visibleRecipes[this.visibleRecipes.indexOf(recipe)].countOfFavorites--;
             this.favorites.splice(this.favorites.indexOf(favorite), 1);
             this.recipeService.removeFavorite(favorite).subscribe();
         }
         else
         {
             favorite = {recipeId: recipe.id, userId: this.userId}
-            this.recipes[this.recipes.indexOf(recipe)].countOfFavorites++;
+            this.visibleRecipes[this.visibleRecipes.indexOf(recipe)].countOfFavorites++;
             this.favorites.push(favorite);
             this.recipeService.addFavorite(favorite).subscribe();
         }

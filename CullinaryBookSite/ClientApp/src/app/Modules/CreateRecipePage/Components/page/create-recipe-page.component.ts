@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Location } from '@angular/common';
 import { RecipeEditDto } from "src/app/Dto/recipeEditDto";
 import { MatChipInputEvent } from '@angular/material/chips'
@@ -16,6 +16,11 @@ import { RecipeService } from "src/app/Services/recipe.service";
 })
 
 export class CreateRecipePageComponent implements OnInit{
+
+    @ViewChild('inputImage') inputImageRef!: ElementRef;
+    image!: File;
+    imageURL!: string | ArrayBuffer | null
+
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
     constructor(private _location: Location,
@@ -137,8 +142,69 @@ export class CreateRecipePageComponent implements OnInit{
         }
     }
 
+    isValidRecipe(): boolean
+    {
+        if (this.recipe.title.length == 0)
+        {
+            alert("Название рецепта не может быть пустым");
+            return false;
+        }
+        if (this.recipe.description.length == 0)
+        {
+            alert("Описание рецепта не может быть пустым");
+            return false;
+        }
+        if (this.recipe.cookingMinutes == 0)
+        {
+            alert("Выберите время готовки");
+            return false;
+        }
+        if (this.recipe.numberOfServings == 0)
+        {
+            alert("Количество порций");
+            return false;
+        }
+        if (this.recipe.ingredients.find(x => x.title == ""))
+        {
+            alert("Заголовок для ингредиентов не может быть пустым");
+            return false;
+        }
+        if (this.recipe.ingredients.find(x => x.products == ""))
+        {
+            alert("Список продуктов для категории не может быть пустым");
+            return false;
+        }
+        if (this.recipe.steps.find(x => x.description == ""))
+        {
+            alert("Описание шага не может быть пустым");
+            return false;
+        }
+        return true;
+    }
+
     createRecipe(): void
     {  
-        this._recipeService.addRecipe(this.recipe).subscribe(()=>{console.log("RecipeCreate")});
+        if (this.isValidRecipe())
+        {
+            this._recipeService.addRecipe(this.recipe).subscribe(()=>{alert("Рецепт был создан")});
+        }
+    }
+
+    inputImageClick()
+    {
+        this.inputImageRef.nativeElement.click()
+    }
+
+    imageChange(event: any)
+    {
+        const reader = new FileReader();
+        const file = event.target.files[0];
+        this.image = file;
+
+        reader.onload = (e) => {
+            this.imageURL = e.target!.result;
+        }
+
+        reader.readAsDataURL(file);
     }
 }
