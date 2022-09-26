@@ -7,12 +7,14 @@ namespace Api.Services.Builders
     public class RecipeBuilder : IRecipeBuilder
     {
         private Recipe _recipe;
-        private readonly string _imagesPath = "C:\\Users\\Alex\\Desktop\\Practice\\SaveImages";
+       
         private readonly IRecipeRepository _recipeRepository;
+        private readonly IImageService _imageService;
 
-        public RecipeBuilder(IRecipeRepository recipeRepository)
+        public RecipeBuilder(IRecipeRepository recipeRepository, IImageService imageService)
         {
             _recipeRepository = recipeRepository;
+            _imageService = imageService;
         }
 
         public async Task<RecipeBuilder> BuildAll(RecipeEditDto recipeDto)
@@ -30,37 +32,20 @@ namespace Api.Services.Builders
             _recipe.Description = recipeDto.Description;
             _recipe.CookingMinutes = recipeDto.CookingMinutes;
             _recipe.NumberOfServings = recipeDto.NumberOfServings;
-            await BuildImage(recipeDto.Image);
             _recipe.AuthorId = recipeDto.AuthorId;
+
+            if (!string.IsNullOrEmpty(_recipe.Image))
+            {
+                _imageService.DeleteImage(_recipe.Image);
+            }
+            _recipe.Image = await _imageService.SaveImage(recipeDto.Image);
+
             BuildIngredients(recipeDto);
             BuildSteps(recipeDto);
             Dictionary<string, Tag> tags = (await _recipeRepository.GetTags()).ToDictionary(t => t.Title);
             BuildTags(recipeDto, tags);
 
             return this;
-        }
-
-        private async Task BuildImage(string image)
-        {
-            string imageFormat = image[(image.IndexOf("/") + 1)..image.IndexOf(";")];
-            string imageName = Path.ChangeExtension(Path.GetRandomFileName(), imageFormat);
-            string imagePath = Path.Combine(_imagesPath, imageName);
-
-            byte[] bytes = Convert.FromBase64String(image[(image.IndexOf(",") + 1)..]);
-            FileStream fs = new(imagePath, FileMode.Create);
-            await fs.WriteAsync(bytes);
-            fs.Close();
-
-            if (!string.IsNullOrEmpty(_recipe.Image))
-            {
-                string deleteImgPath = Path.Combine(_imagesPath, _recipe.Image);
-                if (File.Exists(deleteImgPath))
-                {
-                    File.Delete(deleteImgPath);
-                }
-            }
-
-            _recipe.Image = imageName;
         }
 
         private void BuildIngredients(RecipeEditDto recipeDto)

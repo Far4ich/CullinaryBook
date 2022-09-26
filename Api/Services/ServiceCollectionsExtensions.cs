@@ -9,6 +9,7 @@ namespace Api.Services
     {
         public static void AddApiServices(this IServiceCollection serviceCollection)
         {
+            serviceCollection.AddScoped<IImageService, ImageService>();
             serviceCollection.AddScoped<IRecipeRepository, RecipeRepository>();
             serviceCollection.AddScoped<IRecipeService, RecipeService>();
             serviceCollection.AddScoped<IRecipeBuilder, RecipeBuilder>();

@@ -11,12 +11,14 @@ namespace Api.Services
         private readonly IRecipeRepository _recipeRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRecipeBuilder _recipeBuilder;
+        private readonly IImageService _imageService;
 
-        public RecipeService(IRecipeRepository repository, IUnitOfWork unitOfWork, IRecipeBuilder recipeBuilder)
+        public RecipeService(IRecipeRepository repository, IUnitOfWork unitOfWork, IRecipeBuilder recipeBuilder, IImageService imageService)
         {
             _recipeRepository = repository;
             _unitOfWork = unitOfWork;
             _recipeBuilder = recipeBuilder;
+            _imageService = imageService;
         }
 
         public async Task Delete(int recipeId)
@@ -26,6 +28,8 @@ namespace Api.Services
             {
                 throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
             }
+            _imageService.DeleteImage(recipe.Image);
+
             _recipeRepository.Delete(recipe);
 
             await _unitOfWork.SaveEntitiesAsync();
@@ -38,13 +42,18 @@ namespace Api.Services
             {
                 throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
             }
-
+            recipe.Image = await _imageService.GetDtoImage(recipe.Image);
             return recipe.MapToRecipeEditDto();
         }
 
         public async Task<List<RecipeDto>> GetAll()
         {
             List<Recipe> recipes = await _recipeRepository.GetRecipes();
+
+            foreach (Recipe recipe in recipes)
+            {
+                recipe.Image = await _imageService.GetDtoImage(recipe.Image);
+            }
 
             return recipes.ConvertAll(x => x.MapToRecipeDto());
         }
