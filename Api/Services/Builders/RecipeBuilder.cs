@@ -7,6 +7,7 @@ namespace Api.Services.Builders
     public class RecipeBuilder : IRecipeBuilder
     {
         private Recipe _recipe;
+        private readonly string _imagesPath = "C:\\Users\\Alex\\Desktop\\Practice\\SaveImages";
         private readonly IRecipeRepository _recipeRepository;
 
         public RecipeBuilder(IRecipeRepository recipeRepository)
@@ -29,7 +30,7 @@ namespace Api.Services.Builders
             _recipe.Description = recipeDto.Description;
             _recipe.CookingMinutes = recipeDto.CookingMinutes;
             _recipe.NumberOfServings = recipeDto.NumberOfServings;
-            _recipe.Image = recipeDto.Image;
+            await BuildImage(recipeDto.Image);
             _recipe.AuthorId = recipeDto.AuthorId;
             BuildIngredients(recipeDto);
             BuildSteps(recipeDto);
@@ -37,6 +38,29 @@ namespace Api.Services.Builders
             BuildTags(recipeDto, tags);
 
             return this;
+        }
+
+        private async Task BuildImage(string image)
+        {
+            string imageFormat = image[(image.IndexOf("/") + 1)..image.IndexOf(";")];
+            string imageName = Path.ChangeExtension(Path.GetRandomFileName(), imageFormat);
+            string imagePath = Path.Combine(_imagesPath, imageName);
+
+            byte[] bytes = Convert.FromBase64String(image[(image.IndexOf(",") + 1)..]);
+            FileStream fs = new(imagePath, FileMode.Create);
+            await fs.WriteAsync(bytes);
+            fs.Close();
+
+            if (!string.IsNullOrEmpty(_recipe.Image))
+            {
+                string deleteImgPath = Path.Combine(_imagesPath, _recipe.Image);
+                if (File.Exists(deleteImgPath))
+                {
+                    File.Delete(deleteImgPath);
+                }
+            }
+
+            _recipe.Image = imageName;
         }
 
         private void BuildIngredients(RecipeEditDto recipeDto)

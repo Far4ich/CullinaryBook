@@ -18,8 +18,6 @@ import { RecipeService } from "src/app/Services/recipe.service";
 export class CreateRecipePageComponent implements OnInit{
 
     @ViewChild('inputImage') inputImageRef!: ElementRef;
-    image!: File;
-    imageURL!: string | ArrayBuffer | null
 
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
@@ -199,12 +197,11 @@ export class CreateRecipePageComponent implements OnInit{
     {
         const reader = new FileReader();
         const file = event.target.files[0];
-        this.image = file;
 
         reader.onload = (e) => {
-            this.imageURL = e.target!.result;
+            this.recipe.image = e.target!.result?.toString()!;
         }
-
+        
         reader.readAsDataURL(file);
     }
 }

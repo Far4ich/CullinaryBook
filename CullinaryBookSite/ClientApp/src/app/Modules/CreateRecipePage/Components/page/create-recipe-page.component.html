@@ -10,9 +10,9 @@
         </div>
         <div class="add-recipe-top">
             <div (click)="inputImageClick()">
-                <input [(ngModel)]="recipe.image" type="file" class="display-none" #inputImage (change)="imageChange($event)">
-                <img *ngIf="!imageURL" class="add-recipe-top-img" src="../../../../../assets/images/img-input.svg">
-                <img *ngIf="imageURL" class="add-recipe-top-img" [src]="imageURL">       
+                <input type="file" class="display-none" #inputImage (change)="imageChange($event)">
+                <img *ngIf="!recipe.image" class="add-recipe-top-img" src="../../../../../assets/images/img-input.svg">
+                <img *ngIf="recipe.image" class="add-recipe-top-img" [src]="recipe.image">       
             </div>
             <div class="add-recipe-top-inputs">
                 <input class="add-recipe-top-inputs-title-field"
