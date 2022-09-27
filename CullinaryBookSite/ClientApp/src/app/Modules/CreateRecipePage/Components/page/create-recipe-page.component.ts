@@ -18,6 +18,7 @@ import { RecipeService } from "src/app/Services/recipe.service";
 export class CreateRecipePageComponent implements OnInit{
 
     @ViewChild('inputImage') inputImageRef!: ElementRef;
+    public viewImage: string | ArrayBuffer | null = null;
 
     readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
@@ -53,7 +54,7 @@ export class CreateRecipePageComponent implements OnInit{
         description: "",
         cookingMinutes: 0,
         numberOfServings: 0,
-        image: "",
+        image: null,
         authorId: 1,
         tags: [],
         ingredients: [
@@ -184,7 +185,32 @@ export class CreateRecipePageComponent implements OnInit{
     {  
         if (this.isValidRecipe())
         {
-            this._recipeService.addRecipe(this.recipe).subscribe(()=>{alert("Рецепт был создан")});
+            const formData = new FormData();
+            formData.append("title", this.recipe.title);
+            formData.append("description", this.recipe.description);
+            formData.append("cookingMinutes", this.recipe.cookingMinutes.toString());
+            formData.append("numberOfServings", this.recipe.numberOfServings.toString());
+            formData.append("image", this.recipe.image!);
+            formData.append("authorId", this.recipe.authorId.toString());
+            let i = 0;
+            this.recipe.tags.forEach(element=>{
+                formData.append("tags[" + i + "].title", element.title);
+                i++;
+            });
+            i = 0;
+            this.recipe.ingredients.forEach(element=>{
+                formData.append("ingredients[" + i + "].title", element.title);
+                formData.append("ingredients[" + i + "].orderNumber", element.orderNumber.toString());
+                formData.append("ingredients[" + i + "].products", element.products);
+                i++;
+            });
+            i = 0;
+            this.recipe.steps.forEach(element=>{
+                formData.append("steps[" + i + "].orderNumber", element.orderNumber.toString());
+                formData.append("steps[" + i + "].description", element.description);
+                i++;
+            });
+            this._recipeService.addRecipe(formData).subscribe(()=>{alert("Рецепт был создан")});
         }
     }
 
@@ -197,11 +223,11 @@ export class CreateRecipePageComponent implements OnInit{
     {
         const reader = new FileReader();
         const file = event.target.files[0];
+        this.recipe.image = <File>event.target.files[0];
 
         reader.onload = (e) => {
-            this.recipe.image = e.target!.result?.toString()!;
+            this.viewImage = e.target!.result;
         }
-        
         reader.readAsDataURL(file);
     }
 }

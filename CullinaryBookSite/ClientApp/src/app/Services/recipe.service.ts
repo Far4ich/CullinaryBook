@@ -18,8 +18,8 @@ export class RecipeService {
         return this.httpClient.get<RecipeEditDto>(`${this.apiUrl}/${recipeId}`);
     }
 
-    public addRecipe(recipeEditDto: RecipeEditDto): Observable<null> {
-        return this.httpClient.post<null>(`${this.apiUrl}/create`, recipeEditDto);
+    public addRecipe(recipeFormData: FormData): Observable<null> {
+        return this.httpClient.post<null>(`${this.apiUrl}/create`, recipeFormData);
     }
 
     public updateRecipe(recipeEditDto: RecipeEditDto): Observable<null> {

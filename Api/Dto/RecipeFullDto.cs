@@ -2,7 +2,7 @@
 
 namespace Api.Dto
 {
-    public record RecipeEditDto(
+    public record RecipeFullDto(
         int Id,
         [Required]
         [MaxLength(50)]
@@ -16,7 +16,7 @@ namespace Api.Dto
         [Required]
         [Range(1, 100)]
         int NumberOfServings,
-        IFormFile Image,
+        string Image,
         [Required]
         int AuthorId,
         List<TagDto> Tags,

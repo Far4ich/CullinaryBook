@@ -35,7 +35,7 @@ namespace Api.Services
             await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task<RecipeEditDto> Get(int recipeId)
+        public async Task<RecipeFullDto> Get(int recipeId)
         {
             Recipe recipe = await _recipeRepository.Get(recipeId);
             if (recipe == null)

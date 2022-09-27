@@ -8,7 +8,7 @@ export interface RecipeEditDto{
     description: string;
     cookingMinutes: number;
     numberOfServings: number;
-    image: string;
+    image: Blob | null;
     authorId: number;
     tags: TagDto[];
     ingredients: IngredientDto[];

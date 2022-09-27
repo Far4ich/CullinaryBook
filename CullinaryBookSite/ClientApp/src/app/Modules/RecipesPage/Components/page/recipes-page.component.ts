@@ -135,26 +135,20 @@ export class RecipesPageComponent implements OnInit{
         }
     }
 
-    public isLiked(recipeId: number | undefined): boolean
+    public isLiked(recipeId: number): boolean
     {
-        if (recipeId != undefined)
+        if (this.likes.find(x => x.recipeId == recipeId) != undefined)
         {
-            if (this.likes.find(x => x.recipeId == recipeId) != undefined)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
 
-    public isFavorited(recipeId: number | undefined): boolean
+    public isFavorited(recipeId: number): boolean
     {
-        if (recipeId != undefined)
+        if (this.favorites.find(x => x.recipeId == recipeId) != undefined)
         {
-            if (this.favorites.find(x => x.recipeId == recipeId) != undefined)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }

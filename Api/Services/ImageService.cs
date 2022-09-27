@@ -1,19 +1,25 @@
 ﻿using Domain.RecipeEntity;
+using Microsoft.AspNetCore.Http;
 
 namespace Api.Services
 {
     public class ImageService : IImageService
     {
-        private readonly string _imagesPath = "C:\\Users\\Alex\\Desktop\\Practice\\SaveImages";
-        public async Task<string> SaveImage(string image)
+        private readonly string _imagesPath;
+
+        public ImageService(IConfiguration configuration)
         {
-            string imageFormat = image[(image.IndexOf("/") + 1)..image.IndexOf(";")];
+            _imagesPath = configuration.GetValue<string>("ImagesPath");
+        }
+
+        public async Task<string> SaveImage(IFormFile image)
+        {
+            string imageFormat = image.ContentType[(image.ContentType.IndexOf("/") + 1)..];
             string imageName = Path.ChangeExtension(Path.GetRandomFileName(), imageFormat);
             string imagePath = Path.Combine(_imagesPath, imageName);
 
-            byte[] bytes = Convert.FromBase64String(image[(image.IndexOf(",") + 1)..]);
             FileStream fs = new(imagePath, FileMode.Create);
-            await fs.WriteAsync(bytes);
+            await image.CopyToAsync(fs);
             fs.Close();
 
             return imageName;

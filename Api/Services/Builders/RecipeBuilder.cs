@@ -33,11 +33,6 @@ namespace Api.Services.Builders
             _recipe.CookingMinutes = recipeDto.CookingMinutes;
             _recipe.NumberOfServings = recipeDto.NumberOfServings;
             _recipe.AuthorId = recipeDto.AuthorId;
-
-            if (!string.IsNullOrEmpty(_recipe.Image))
-            {
-                _imageService.DeleteImage(_recipe.Image);
-            }
             _recipe.Image = await _imageService.SaveImage(recipeDto.Image);
 
             BuildIngredients(recipeDto);

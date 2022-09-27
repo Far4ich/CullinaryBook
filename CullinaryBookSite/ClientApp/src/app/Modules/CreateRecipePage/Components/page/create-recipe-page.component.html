@@ -11,8 +11,8 @@
         <div class="add-recipe-top">
             <div (click)="inputImageClick()">
                 <input type="file" class="display-none" #inputImage (change)="imageChange($event)">
-                <img *ngIf="!recipe.image" class="add-recipe-top-img" src="../../../../../assets/images/img-input.svg">
-                <img *ngIf="recipe.image" class="add-recipe-top-img" [src]="recipe.image">       
+                <img *ngIf="!viewImage" class="add-recipe-top-img" src="../../../../../assets/images/img-input.svg">
+                <img *ngIf="viewImage" class="add-recipe-top-img" [src]="viewImage">       
             </div>
             <div class="add-recipe-top-inputs">
                 <input class="add-recipe-top-inputs-title-field"

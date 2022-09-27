@@ -31,7 +31,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> CreateRecipe([FromBody] RecipeEditDto recipe)
+        public async Task<IActionResult> CreateRecipe([FromForm] RecipeEditDto recipe)
         {
             await _recipeService.Save(recipe);
             return Ok();
@@ -47,7 +47,7 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("update")]
-        public async Task<IActionResult> EditRecipe([FromBody] RecipeEditDto recipe)
+        public async Task<IActionResult> EditRecipe([FromForm] RecipeEditDto recipe)
         {
             await _recipeService.Save(recipe);
             return Ok();

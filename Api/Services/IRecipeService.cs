@@ -6,7 +6,7 @@ namespace Api.Services
     public interface IRecipeService
     {
         Task<List<RecipeDto>> GetAll();
-        Task<RecipeEditDto> Get(int recipeId);
+        Task<RecipeFullDto> Get(int recipeId);
         Task<List<RecipeDto>> GetByTag(int tagId);
         Task<RecipeBestDto> GetBestRecipe();
         Task Save(RecipeEditDto recipe);
