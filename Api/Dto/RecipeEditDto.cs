@@ -16,7 +16,7 @@ namespace Api.Dto
         [Required]
         [Range(1, 100)]
         int NumberOfServings,
-        string Image,
+        IFormFile Image,
         [Required]
         int AuthorId,
         List<TagDto> Tags,

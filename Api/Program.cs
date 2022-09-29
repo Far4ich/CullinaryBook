@@ -3,10 +3,7 @@ using Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -15,10 +12,13 @@ builder.Services.AddApiServices();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
+
+app.UseCors(x => x
+    .WithOrigins("http://localhost:4200")
+    .AllowCredentials()
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());

@@ -1,4 +1,5 @@
 ﻿using Domain.RecipeEntity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data.UserModel
 {
@@ -21,14 +22,18 @@ namespace Infrastructure.Data.UserModel
             throw new NotImplementedException();
         }
 
-        public List<Favorite> GetFavorites(int userId)
+        public async Task<List<Favorite>> GetFavorites(int userId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Favorite
+                .Where(f => f.UserId == userId)
+                .ToListAsync();
         }
 
-        public List<Like> GetLikes(int userId)
+        public async Task<List<Like>> GetLikes(int userId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Like
+                .Where(l => l.UserId == userId)
+                .ToListAsync();
         }
 
         public void Update(User user)

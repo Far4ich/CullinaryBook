@@ -7,11 +7,14 @@ namespace Api.Services.Builders
     public class RecipeBuilder : IRecipeBuilder
     {
         private Recipe _recipe;
+       
         private readonly IRecipeRepository _recipeRepository;
+        private readonly IImageService _imageService;
 
-        public RecipeBuilder(IRecipeRepository recipeRepository)
+        public RecipeBuilder(IRecipeRepository recipeRepository, IImageService imageService)
         {
             _recipeRepository = recipeRepository;
+            _imageService = imageService;
         }
 
         public async Task<RecipeBuilder> BuildAll(RecipeEditDto recipeDto)
@@ -29,8 +32,9 @@ namespace Api.Services.Builders
             _recipe.Description = recipeDto.Description;
             _recipe.CookingMinutes = recipeDto.CookingMinutes;
             _recipe.NumberOfServings = recipeDto.NumberOfServings;
-            _recipe.Image = recipeDto.Image;
             _recipe.AuthorId = recipeDto.AuthorId;
+            _recipe.Image = await _imageService.SaveImage(recipeDto.Image);
+
             BuildIngredients(recipeDto);
             BuildSteps(recipeDto);
             Dictionary<string, Tag> tags = (await _recipeRepository.GetTags()).ToDictionary(t => t.Title);

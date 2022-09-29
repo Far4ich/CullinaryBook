@@ -16,9 +16,9 @@ namespace Api.Services.Mappers
                 recipe.Likes.Count());
         }
 
-        public static RecipeEditDto MapToRecipeEditDto(this Recipe recipe)
+        public static RecipeFullDto MapToRecipeEditDto(this Recipe recipe)
         {
-            return new RecipeEditDto(
+            return new RecipeFullDto(
                 recipe.Id,
                 recipe.Title,
                 recipe.Description,

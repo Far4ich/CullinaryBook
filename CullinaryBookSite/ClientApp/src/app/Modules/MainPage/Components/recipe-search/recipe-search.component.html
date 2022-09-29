@@ -1,6 +1,10 @@
 <div class="recipe-search-form">
     <div>
         <input class="recipe-search-form-input" placeholder="Название блюда...">
+        <div class="recipe-search-form-tags">
+            <recipe-search-tag *ngFor="let tag of prewiewTags" [tag]="tag" >
+            </recipe-search-tag>
+        </div>
     </div>
     <button class="recipe-search-form-button">Поиск</button>
 </div>

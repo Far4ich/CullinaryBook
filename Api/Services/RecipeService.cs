@@ -11,12 +11,14 @@ namespace Api.Services
         private readonly IRecipeRepository _recipeRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRecipeBuilder _recipeBuilder;
+        private readonly IImageService _imageService;
 
-        public RecipeService(IRecipeRepository repository, IUnitOfWork unitOfWork, IRecipeBuilder recipeBuilder)
+        public RecipeService(IRecipeRepository repository, IUnitOfWork unitOfWork, IRecipeBuilder recipeBuilder, IImageService imageService)
         {
             _recipeRepository = repository;
             _unitOfWork = unitOfWork;
             _recipeBuilder = recipeBuilder;
+            _imageService = imageService;
         }
 
         public async Task Delete(int recipeId)
@@ -26,25 +28,33 @@ namespace Api.Services
             {
                 throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
             }
+            _imageService.DeleteImage(recipe.Image);
+
             _recipeRepository.Delete(recipe);
 
             await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task<RecipeEditDto> Get(int recipeId)
+        public async Task<RecipeFullDto> Get(int recipeId)
         {
             Recipe recipe = await _recipeRepository.Get(recipeId);
             if (recipe == null)
             {
                 throw new Exception($"{nameof(Recipe)} not found, #Id - {recipeId}");
             }
-
+            recipe.Image = await _imageService.GetDtoImage(recipe.Image);
             return recipe.MapToRecipeEditDto();
         }
 
         public async Task<List<RecipeDto>> GetAll()
         {
             List<Recipe> recipes = await _recipeRepository.GetRecipes();
+
+            foreach (Recipe recipe in recipes)
+            {
+                recipe.Image = await _imageService.GetDtoImage(recipe.Image);
+            }
+
             return recipes.ConvertAll(x => x.MapToRecipeDto());
         }
 
@@ -58,34 +68,42 @@ namespace Api.Services
             throw new NotImplementedException();
         }
 
-        public async Task RemoveFavorite(int recipeId, int userId)
+        public async Task RemoveFavorite(FavoriteDto favoriteDto)
         {
-            Favorite favorite = await _recipeRepository.GetFavorite(recipeId, userId);
+            Favorite favorite = await _recipeRepository.GetFavorite(favoriteDto.RecipeId, favoriteDto.UserId);
             if (favorite == null)
             {
-                throw new Exception($"{nameof(Favorite)} not found, #RecipeId - {recipeId} #UserId - {userId}");
+                throw new Exception($"{nameof(Favorite)} not found, #RecipeId - {favoriteDto.RecipeId} #UserId - {favoriteDto.RecipeId}");
             }
             _recipeRepository.RemoveFavorite(favorite);
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task RemoveLike(int recipeId, int userId)
+        public async Task RemoveLike(LikeDto likeDto)
         {
-            Like like = await _recipeRepository.GetLike(recipeId, userId);
+            Like like = await _recipeRepository.GetLike(likeDto.RecipeId, likeDto.UserId);
             if (like == null)
             {
-                throw new Exception($"{nameof(Like)} not found, #RecipeId - {recipeId} #UserId - {userId}");
+                throw new Exception($"{nameof(Like)} not found, #RecipeId - {likeDto.RecipeId} #UserId - {likeDto.UserId}");
             }
             _recipeRepository.RemoveLike(like);
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task SetFavorite(int recipeId, int userId)
+        public async Task AddFavorite(FavoriteDto favoriteDto)
         {
-            await _recipeRepository.SetFavorite(new Favorite(userId, recipeId));
+            await _recipeRepository.AddFavorite(favoriteDto.MapToFavorite());
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
-        public async Task SetLike(int recipeId, int userId)
+        public async Task AddLike(LikeDto likeDto)
         {
-            await _recipeRepository.SetLike(new Like(userId, recipeId));
+            await _recipeRepository.AddLike(likeDto.MapToLike());
+
+            await _unitOfWork.SaveEntitiesAsync();
         }
 
         public async Task Save(RecipeEditDto recipeDto)

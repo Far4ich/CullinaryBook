@@ -1,6 +1,6 @@
 .body{
-    width: 83.33%;
-    padding: 0 8.33%;
+    max-width: 1200px;
+    margin: 0px auto;
 }
 
 .body-background-img{
@@ -64,6 +64,21 @@
     color: #FFFFFF;
 }
 
+.slogan-buttons-add-recipe:hover{
+    cursor: pointer;
+    width: 278px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #FDB100;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FDB100;
+}
+
 .slogan-buttons-login{
     box-sizing: border-box;
     width: 216px;
@@ -81,7 +96,26 @@
     color: #FDB100;
 }
 
+.slogan-buttons-login:hover{
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 216px;
+    height: 60px;
+    border: none;
+    border-radius: 16px;
+    background-color: #FDB100;
+    margin-left: 24px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
 .tags-preview{
+    max-width: 1200px;
     height: 459px;
     margin-top: 352px;
     display: flex;
@@ -143,7 +177,7 @@
 .recipe-search-description{
     height: 32px;
     margin-top: 16px;
-    font-family: 'Mulish';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -153,17 +187,6 @@
     color: #4A525A;
 }
 
-.recipe-search-form-tags{
-    margin-top: 22px;
-    margin-left: 160px;   
-}
-
-.recipe-search-form-tags-item{
-    margin-right: 12px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 18px;
-    color: #808080;
+.recipe-search-form{
+    margin-top: 64px;
 }

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { Tag } from "../../shared/tag";
+import { SearchTag } from "../../Shared/recipe-search-tag";
+import { Tag } from "../../Shared/tag";
 
 @Component({
     templateUrl:'./main-page.component.html',
@@ -29,4 +30,19 @@ export class MainPageComponent{
             picture: "../../../../assets/images/holiday.svg"
         }
     ];
+
+    public searchTags: SearchTag[] = [
+        {
+            title: "Мясо"
+        },
+        {
+            title: "Деликатесы"
+        },
+        {
+            title: "Пироги"
+        },
+        {
+            title: "Рыба"
+        }
+    ]
 }

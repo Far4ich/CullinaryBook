@@ -1,0 +1,28 @@
+<div class="body">
+    <div class="title">
+        <span class="title-text">Рецепты</span>
+        <a routerLink="/recipes/create">
+            <button class="title-button">+ Добавить рецепт</button>
+        </a>
+    </div>
+    
+    <div class="tag-cards">
+        <tag-cards class="tag-cards-card" *ngFor="let tag of tags" [tag]="tag"></tag-cards>
+    </div>
+
+    <div class="search">
+        <span class="search-title">Поиск рецепта</span>
+        <app-recipe-search [prewiewTags] = "searchTags"></app-recipe-search>
+    </div>
+
+    <div class="recipes">
+        <recipe-item *ngFor="let recipe of visibleRecipes" 
+            [recipe]="recipe" 
+            [liked]="isLiked(recipe.id)" 
+            [favorited]="isFavorited(recipe.id)"
+            (like)="likeClicked($event)"
+            (favorite)="favoriteClicked($event)">
+        </recipe-item>
+        <button (click)="AddVisibleRecipes()" class="recipes-download-more">Загрузить еще</button>
+    </div>
+</div>

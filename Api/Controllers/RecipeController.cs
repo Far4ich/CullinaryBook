@@ -31,7 +31,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> CreateRecipe([FromBody] RecipeEditDto recipe)
+        public async Task<IActionResult> CreateRecipe([FromForm] RecipeEditDto recipe)
         {
             await _recipeService.Save(recipe);
             return Ok();
@@ -47,9 +47,41 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("update")]
-        public async Task<IActionResult> EditRecipe([FromBody] RecipeEditDto recipe)
+        public async Task<IActionResult> EditRecipe([FromForm] RecipeEditDto recipe)
         {
             await _recipeService.Save(recipe);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("add-like")]
+        public async Task<IActionResult> AddLike([FromBody] LikeDto like)
+        {
+            await _recipeService.AddLike(like);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("add-favorite")]
+        public async Task<IActionResult> AddFavorite([FromBody] FavoriteDto favorite)
+        {
+            await _recipeService.AddFavorite(favorite);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("remove-like")]
+        public async Task<IActionResult> RemoveLike([FromBody] LikeDto like)
+        {
+            await _recipeService.RemoveLike(like);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("remove-favorite")]
+        public async Task<IActionResult> RemoveFavorite([FromBody] FavoriteDto favorite)
+        {
+            await _recipeService.RemoveFavorite(favorite);
             return Ok();
         }
     }

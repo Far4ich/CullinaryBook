@@ -1,9 +1,9 @@
 <div class="header">
     <div class="header-navigation">
         <span class="header-logo">Recipes</span>
-        <span class="header-navigation-item">Главная</span>
-        <span class="header-navigation-item">Рецепты</span>
-        <span class="header-navigation-item">Избранное</span>
+        <a routerLinkActive="header-navigation-item-active" class ="header-navigation-item" routerLink = "" [routerLinkActiveOptions]="{exact:true}">Главная</a>
+        <a routerLinkActive="header-navigation-item-active" class ="header-navigation-item" routerLink = "/recipes" [routerLinkActiveOptions]="{exact:true}">Рецепты</a>
+        <a routerLinkActive="header-navigation-item-active" class ="header-navigation-item" routerLink = "/favorites" [routerLinkActiveOptions]="{exact:true}">Избранное</a>
     </div>
     <div class="header-login">
         <div class="header-login-img"></div>

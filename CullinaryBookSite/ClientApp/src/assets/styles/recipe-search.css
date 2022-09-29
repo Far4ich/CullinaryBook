@@ -1,5 +1,4 @@
 .recipe-search-form{
-    margin-top: 64px;
     display: flex;
     justify-content: center;
 }
@@ -37,4 +36,8 @@
     text-align: center;
     text-transform: capitalize;
     color: #FFFFFF;
+}
+
+.recipe-search-form-tags{
+    margin-top: 22px;  
 }
